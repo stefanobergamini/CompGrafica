@@ -1,47 +1,41 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
 from models.button import Button
+from models.window import Window
 
-class WindowOne(QWidget):
+class Main():
     def __init__(self):
-        super().__init__()
+        app = QApplication(sys.argv)
 
-        self.setGeometry(200, 200, 400, 300)
-        self.setWindowTitle("Trabalho 1")
-        #self.setStyleSheet('background-color: black')
-        self.create_buttons()
+        mainWindow = Window()
+        mainWindow.setGeometry(200, 200, 400, 300)
+        mainWindow.setWindowTitle("Trabalho 1")
+        self.create_buttons(mainWindow)
+        mainWindow.show()
 
-        #self.setFixedHeight(500)
-        #self.setFixedWidth(500)
+        sys.exit(app.exec_())
+        app.exec_()
 
-    def create_buttons(self):
-        buttonCima = Button(self)
+    def create_buttons(self, parent):
+        buttonCima = Button(parent)
         buttonCima.mountButton("cima", 35, 0, 70, 50)
 
-        buttonEsquerda = Button(self)
+        buttonEsquerda = Button(parent)
         buttonEsquerda.mountButton("esquerda", 0, 50, 70, 50)
 
-        buttonDireita = Button(self)
+        buttonDireita = Button(parent)
         buttonDireita.mountButton("direita", 70, 50, 70, 50)
 
-        buttonBaixo = Button(self)
+        buttonBaixo = Button(parent)
         buttonBaixo.mountButton("baixo", 35, 100, 70, 50)
 
-        buttonInserir = Button(self)
+        buttonInserir = Button(parent)
         buttonInserir.mountButton("criar ponto/linha/poligonos", 0, 150, 140, 50)
 
-        buttonZoomIn = Button(self)
+        buttonZoomIn = Button(parent)
         buttonZoomIn.mountButton("+", 0, 200, 70, 50)
 
-        buttonZoomOut = Button(self)
+        buttonZoomOut = Button(parent)
         buttonZoomOut.mountButton("-", 70, 200, 70, 50)
 
-        self.show()
-
-
-app = QApplication(sys.argv)
-window = WindowOne()
-window.show()
-sys.exit(app.exec_())
-
-app.exec_()
+Main()
