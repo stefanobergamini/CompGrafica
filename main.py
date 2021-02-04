@@ -1,15 +1,13 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
 from models.button import Button
-from models.window import Window
+from mainWindow import MainWindow
 
 class Main():
     def __init__(self):
         app = QApplication(sys.argv)
 
-        mainWindow = Window()
-        mainWindow.setGeometry(200, 200, 400, 300)
-        mainWindow.setWindowTitle("Trabalho 1")
+        mainWindow = MainWindow()
         self.create_buttons(mainWindow)
         mainWindow.show()
 
@@ -32,10 +30,10 @@ class Main():
         buttonInserir = Button(parent)
         buttonInserir.mountButton("criar ponto/linha/poligonos", 0, 150, 140, 50)
 
-        buttonZoomIn = Button(parent)
-        buttonZoomIn.mountButton("+", 0, 200, 70, 50)
-
         buttonZoomOut = Button(parent)
-        buttonZoomOut.mountButton("-", 70, 200, 70, 50)
+        buttonZoomOut.mountButton("-", 0, 200, 70, 50)
+
+        buttonZoomIn = Button(parent)
+        buttonZoomIn.mountButton("+", 70, 200, 70, 50)
 
 Main()
