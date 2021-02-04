@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget
+from models.button import Button
 
 class WindowOne(QWidget):
     def __init__(self):
@@ -14,24 +15,22 @@ class WindowOne(QWidget):
         #self.setFixedWidth(500)
 
     def create_buttons(self):
-        btn1 = QPushButton("cima", self)
-        #btn1.setText("texto dentro do botao")
-        #btn1.move(200,200)
-        btn1.setGeometry(35, 0, 70, 50)
+        buttonCima = Button(self)
+        buttonCima.mountButton("cima", 35, 0, 70, 50)
 
-        btn2 = QPushButton("esquerda", self)
-        btn2.setGeometry(0, 50, 70, 50)
+        buttonEsquerda = Button(self)
+        buttonEsquerda.mountButton("esquerda", 0, 50, 70, 50)
 
-        btn3 = QPushButton("direita", self)
-        btn3.setGeometry(70, 50, 70, 50)
+        buttonDireita = Button(self)
+        buttonDireita.mountButton("direita", 70, 50, 70, 50)
 
-        btn4 = QPushButton("baixo", self)
-        btn4.setGeometry(35, 100, 70, 50)
+        buttonBaixo = Button(self)
+        buttonBaixo.mountButton("baixo", 35, 100, 70, 50)
 
-        btn5 = QPushButton("inserir ponto/linha/linhas", self)
-        btn5.setGeometry(0, 150, 140, 50)
+        buttonInserir = Button(self)
+        buttonInserir.mountButton("criar ponto/linha/poligonos", 0, 150, 140, 50)
 
-        #self.show()
+        self.show()
 
 
 app = QApplication(sys.argv)
