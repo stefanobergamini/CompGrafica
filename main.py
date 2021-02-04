@@ -30,6 +30,12 @@ class WindowOne(QWidget):
         buttonInserir = Button(self)
         buttonInserir.mountButton("criar ponto/linha/poligonos", 0, 150, 140, 50)
 
+        buttonZoomIn = Button(self)
+        buttonZoomIn.mountButton("+", 0, 200, 70, 50)
+
+        buttonZoomOut = Button(self)
+        buttonZoomOut.mountButton("-", 70, 200, 70, 50)
+
         self.show()
 
 
