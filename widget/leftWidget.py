@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QPushButton, QWidget
 from widget.coordinatesWidget import CoordinatesWidget
 
+
 class LeftWidget(QWidget):
     """
     This "window" is a QWidget. If it has no parent, it

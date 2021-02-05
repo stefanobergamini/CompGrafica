@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 from windows.mainWindow import MainWindow
 
+
 class Main():
     def __init__(self):
         app = QApplication(sys.argv)
@@ -11,5 +12,6 @@ class Main():
 
         sys.exit(app.exec_())
         app.exec_()
+
 
 Main()

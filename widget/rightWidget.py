@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QPushButton, QWidget
 from PyQt5.QtGui import QColor, QPalette
 
+
 class RightWidget(QWidget):
     
     def __init__(self):

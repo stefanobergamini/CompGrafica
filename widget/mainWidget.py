@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QGridLayout, QWidget
 from widget.leftWidget import LeftWidget
 from widget.rightWidget import RightWidget
 
+
 class MainWidget(QWidget):
 
     def __init__(self):
