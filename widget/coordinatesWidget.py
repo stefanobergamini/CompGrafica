@@ -1,13 +1,9 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 
 
-class AnotherWindow(QWidget):
-    """
-    This "window" is a QWidget. If it has no parent, it
-    will appear as a free-floating window as we want.
-    """
+class CoordinatesWidget(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(300, 300, 100, 100)
@@ -26,6 +22,7 @@ class AnotherWindow(QWidget):
         layout.addWidget(self.Confirma)
         self.Confirma.clicked.connect(self.printXeY)
         self.setLayout(layout)
+
     def printXeY(self):
         print(self.coordenadaX.displayText())
         print(self.coordenadaY.displayText())
