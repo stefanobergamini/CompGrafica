@@ -3,10 +3,11 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 
 
-class CoordinatesWidget(QWidget):
+class CoordinatesWidgetPonto(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(300, 300, 100, 100)
+        self.setWindowTitle("Ponto")
+        self.setGeometry(300, 300, 200, 100)
         layout = QVBoxLayout()
 
         self.coordenadaX = QLineEdit()
@@ -21,8 +22,17 @@ class CoordinatesWidget(QWidget):
         self.Confirma.setStyleSheet('font-size: 30px')
         layout.addWidget(self.Confirma)
         self.Confirma.clicked.connect(self.printXeY)
+
+        self.Limpar = QPushButton('Limpar')
+        self.Limpar.setStyleSheet('font-size: 15px')
+        layout.addWidget(self.Limpar)
+        self.Limpar.clicked.connect(self.clearLabels)
         self.setLayout(layout)
 
     def printXeY(self):
         print(self.coordenadaX.displayText())
         print(self.coordenadaY.displayText())
+
+    def clearLabels(self):
+        self.coordenadaX.clear()
+        self.coordenadaY.clear()
