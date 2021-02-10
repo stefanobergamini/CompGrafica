@@ -8,6 +8,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("COMPUTACAO GRAFICA")
         self.setGeometry(200, 200, 1000, 500)
+        self.setFixedSize(1000, 500)
         mainWidget = MainWidget()
         mainWidget.show()
         self.setCentralWidget(mainWidget)
