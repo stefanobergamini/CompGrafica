@@ -6,6 +6,5 @@ class Line():
         self.point1 = point1
         self.point2 = point2
 
-
     def draw(self, painter):
         painter.drawLine(self.point1, self.point2)

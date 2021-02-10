@@ -5,7 +5,7 @@ from PyQt5.QtCore import QPoint
 
 
 class Objects:
-    listObjects = [Polygon([Point(10,10), Point(10,100), Point(100,10), Point(100,100)])]
+    listObjects = []
 
     @staticmethod
     def clearObjects(object):

@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
-
+from object.objects import Objects
+from object.point import Point
 
 class CoordinatesWidgetPonto(QWidget):
     def __init__(self):
@@ -30,8 +31,12 @@ class CoordinatesWidgetPonto(QWidget):
         self.setLayout(layout)
 
     def printXeY(self):
-        print(self.coordenadaX.displayText())
-        print(self.coordenadaY.displayText())
+        x = int(self.coordenadaX.displayText())
+        y = int(self.coordenadaY.displayText())
+        point = Point(x, y)
+        Objects.addObject(point)
+        self.close()
+        self.clearLabels()
 
     def clearLabels(self):
         self.coordenadaX.clear()

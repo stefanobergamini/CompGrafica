@@ -1,7 +1,9 @@
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
-
+from object.objects import Objects
+from object.point import Point
+from object.polygon import Polygon
 
 class CoordinatesWidgetPoligono(QWidget):
     def __init__(self):
@@ -28,7 +30,14 @@ class CoordinatesWidgetPoligono(QWidget):
         self.setLayout(self.layout)
 
     def printXeY(self):
-        print(self.coordenadaXY.displayText())
+        newpontos = []
+        coordenadasXY = self.coordenadaXY.displayText().split(' ')
+        for stringPonto in coordenadasXY:
+            pontoArray = stringPonto.replace('[', '').replace(']', '').split(',')
+            newpontos.append(Point(int(pontoArray[0]), int(pontoArray[1])))
+        Objects.addObject(Polygon(newpontos))
+        self.close()
+        self.clearLabels()
 
     def clearLabels(self):
         self.coordenadaXY.clear()
