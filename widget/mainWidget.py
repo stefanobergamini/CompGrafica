@@ -10,18 +10,15 @@ class MainWidget(QWidget):
     def __init__(self):
         super().__init__()
         leftWidget = LeftWidget()
-        leftWidget.show()
 
         rightWidget = RightWidget()
-        rightWidget.show()
 
         objectsList = ObjectsList()
-        objectsList.show()
 
         grid = QGridLayout()
-        grid.setSpacing(10)
+        grid.setSpacing(0)
 
-        grid.addWidget(leftWidget, 1, 1, 1, 1)
-        grid.addWidget(objectsList, 2, 1, 1, 1)
-        grid.addWidget(rightWidget, 1, 2, 1, 4)
+        grid.addWidget(leftWidget, 0, 0)
+        grid.addWidget(objectsList, 1, 0)
+        grid.addWidget(rightWidget, 0, 1)
         self.setLayout(grid)

@@ -12,45 +12,44 @@ class LeftWidget(QWidget):
     """
     def __init__(self):
         super().__init__()
-        self.setGeometry(0, 0, 200, 500)
         self.coordinatesWidgetLinha = None  # No external window yet.
         self.coordinatesWidgetPonto = None  # No external window yet.
         self.coordinatesWidgetPoligono = None  # No external window yet.
-        self.btn1 = QPushButton("cima", self)
+        self.btn1 = QPushButton("Up", self)
         self.btn1.clicked.connect(Window.moveUp)
-        self.btn1.setGeometry(35, 0, 70, 50)
+        self.btn1.setGeometry(43, 30, 86, 25)
 
-        self.btn2 = QPushButton("esquerda", self)
+        self.btn2 = QPushButton("Left", self)
         self.btn2.clicked.connect(Window.moveLeft)
-        self.btn2.setGeometry(0, 50, 70, 50)
+        self.btn2.setGeometry(0, 55, 86, 25)
 
-        self.btn3 = QPushButton("direita", self)
+        self.btn3 = QPushButton("Right", self)
         self.btn3.clicked.connect(Window.moveRight)
-        self.btn3.setGeometry(70, 50, 70, 50)
+        self.btn3.setGeometry(86, 55, 86, 25)
 
-        self.btn4 = QPushButton("baixo", self)
+        self.btn4 = QPushButton("Down", self)
         self.btn4.clicked.connect(Window.moveDown)
-        self.btn4.setGeometry(35, 100, 70, 50)
+        self.btn4.setGeometry(43, 80, 86, 25)
 
-        self.btn5 = QPushButton("inserir ponto", self)
+        self.btn5 = QPushButton("Insert Point", self)
         self.btn5.clicked.connect(self.show_new_window_ponto)
-        self.btn5.setGeometry(0, 150, 140, 50)
+        self.btn5.setGeometry(0, 215, 173, 25)
 
-        self.btn6 = QPushButton("inserir linha", self)
+        self.btn6 = QPushButton("Insert Line", self)
         self.btn6.clicked.connect(self.show_new_window_linha)
-        self.btn6.setGeometry(0, 200, 140, 50)
+        self.btn6.setGeometry(0, 240, 173, 25)
 
-        self.btn7 = QPushButton("inserir poligono", self)
+        self.btn7 = QPushButton("Insert Poligon", self)
         self.btn7.clicked.connect(self.show_new_window_poligono)
-        self.btn7.setGeometry(0, 250, 140, 50)
+        self.btn7.setGeometry(0, 265, 173, 25)
 
         self.btn8 = QPushButton("Zoom In", self)
         self.btn8.clicked.connect(Window.zoomIn)
-        self.btn8.setGeometry(0, 300, 70, 50)
+        self.btn8.setGeometry(0, 125, 86, 25)
 
         self.btn9 = QPushButton("Zoom Out", self)
         self.btn9.clicked.connect(Window.zoomOut)
-        self.btn9.setGeometry(70, 300, 70, 50)
+        self.btn9.setGeometry(86, 125, 86, 25)
 
        
     def show_new_window_ponto(self, checked):

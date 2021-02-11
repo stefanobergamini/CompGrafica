@@ -3,7 +3,6 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 from object.objects import Objects
 from object.point import Point
-from widget.objectsList import ObjectsList
 
 class CoordinatesWidgetPonto(QWidget):
     def __init__(self):

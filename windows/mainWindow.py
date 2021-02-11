@@ -6,9 +6,9 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("COMPUTACAO GRAFICA")
-        self.setGeometry(200, 200, 1000, 500)
-        self.setFixedSize(1000, 500)
+        self.setWindowTitle("Computação Gráfica                  Draw Area: [800, 450]")
+        self.setGeometry(200, 200, 1000, 470)
+        self.setFixedSize(1000, 470)
         mainWidget = MainWidget()
         mainWidget.show()
         self.setCentralWidget(mainWidget)
