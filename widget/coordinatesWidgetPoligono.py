@@ -9,7 +9,7 @@ from widget.objectsList import ObjectsList
 class CoordinatesWidgetPoligono(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Linha")
+        self.setWindowTitle("Wireframe")
         self.setGeometry(300, 300, 200, 100)
         self.layout = QVBoxLayout()
 
