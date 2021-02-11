@@ -8,6 +8,7 @@ class Point(QPoint, Object2D):
         super().__init__(x, y)
         self.x = x
         self.y = y
+        self.label = "Point [{}, {}] coordenates".format(x, y)
 
     def draw(self, painter):
         pointsTransformed = self.transformViewport([self])[0]

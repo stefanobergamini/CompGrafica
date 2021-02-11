@@ -7,6 +7,7 @@ class Line(Object2D):
     def __init__(self, point1, point2):
         self.point1 = point1
         self.point2 = point2
+        self.label = "Line {}, {} points".format([point1.x, point1.y], [point2.x,point2.y])
 
     def draw(self, painter):
         cordinatesTransformed = self.transformViewport([self.point1, self.point2])

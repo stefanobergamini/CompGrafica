@@ -7,6 +7,7 @@ class Wireframe(QPolygon, Object2D):
     def __init__(self, points):
         super().__init__(points)
         self.points = points
+        self.label = "Wireframe {} points".format(points)
 
     def draw(self, painter):
         cordinatesTransformed = self.transformViewport(self.points)

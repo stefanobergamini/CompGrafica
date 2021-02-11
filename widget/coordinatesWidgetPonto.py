@@ -36,7 +36,6 @@ class CoordinatesWidgetPonto(QWidget):
         y = int(self.coordenadaY.displayText())
         point = Point(x, y)
         Objects.addObject(point)
-        ObjectsList.addObject()
         self.close()
         self.clearLabels()
 
