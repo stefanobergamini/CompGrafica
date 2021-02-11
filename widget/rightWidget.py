@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QPainter, QPalette, QColor
+from PyQt5 import QtCore
 from object.objects import Objects
 from windows.viewport import Viewport
 
@@ -14,6 +15,10 @@ class RightWidget(QWidget):
         palette = self.palette()
         palette.setColor(QPalette.Window, QColor('white'))
         self.setPalette(palette)
+
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.update)
+        self.timer.start(1000 / 60)
 
     def paintEvent(self, event):
         painter = QPainter(self)

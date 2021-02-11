@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 from object.objects import Objects
 from object.point import Point
-from object.polygon import Polygon
+from object.wireframe import Wireframe
 
 class CoordinatesWidgetPoligono(QWidget):
     def __init__(self):
@@ -35,7 +35,7 @@ class CoordinatesWidgetPoligono(QWidget):
         for stringPonto in coordenadasXY:
             pontoArray = stringPonto.replace('[', '').replace(']', '').split(',')
             newpontos.append(Point(int(pontoArray[0]), int(pontoArray[1])))
-        Objects.addObject(Polygon(newpontos))
+        Objects.addObject(Wireframe(newpontos))
         self.close()
         self.clearLabels()
 

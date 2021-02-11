@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QPushButton, QWidget
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
-
+from windows.window import Window
 
 class LeftWidget(QWidget):
     """
@@ -17,15 +17,19 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetPonto = None  # No external window yet.
         self.coordinatesWidgetPoligono = None  # No external window yet.
         self.btn1 = QPushButton("cima", self)
+        self.btn1.clicked.connect(Window.moveUp)
         self.btn1.setGeometry(35, 0, 70, 50)
 
         self.btn2 = QPushButton("esquerda", self)
+        self.btn2.clicked.connect(Window.moveLeft)
         self.btn2.setGeometry(0, 50, 70, 50)
 
         self.btn3 = QPushButton("direita", self)
+        self.btn3.clicked.connect(Window.moveRight)
         self.btn3.setGeometry(70, 50, 70, 50)
 
         self.btn4 = QPushButton("baixo", self)
+        self.btn4.clicked.connect(Window.moveDown)
         self.btn4.setGeometry(35, 100, 70, 50)
 
         self.btn5 = QPushButton("inserir ponto", self)
@@ -41,9 +45,11 @@ class LeftWidget(QWidget):
         self.btn7.setGeometry(0, 250, 140, 50)
 
         self.btn8 = QPushButton("Zoom In", self)
+        self.btn8.clicked.connect(Window.zoomIn)
         self.btn8.setGeometry(0, 300, 70, 50)
 
         self.btn9 = QPushButton("Zoom Out", self)
+        self.btn9.clicked.connect(Window.zoomOut)
         self.btn9.setGeometry(70, 300, 70, 50)
        
     def show_new_window_ponto(self, checked):
