@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QPushButton, QWidget
+from PyQt5.QtWidgets import QPushButton, QWidget, QListWidget, QMessageBox, QApplication
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
@@ -51,6 +51,7 @@ class LeftWidget(QWidget):
         self.btn9 = QPushButton("Zoom Out", self)
         self.btn9.clicked.connect(Window.zoomOut)
         self.btn9.setGeometry(70, 300, 70, 50)
+
        
     def show_new_window_ponto(self, checked):
         if self.coordinatesWidgetPonto is None:
