@@ -1,9 +1,9 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QPushButton, QWidget, QListWidget, QMessageBox, QApplication
+from PyQt5.QtWidgets import QPushButton, QWidget
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
 from windows.window import Window
+
 
 class LeftWidget(QWidget):
     """
@@ -51,7 +51,6 @@ class LeftWidget(QWidget):
         self.btn9.clicked.connect(Window.zoomOut)
         self.btn9.setGeometry(86, 125, 86, 25)
 
-       
     def show_new_window_ponto(self, checked):
         if self.coordinatesWidgetPonto is None:
             self.coordinatesWidgetPonto = CoordinatesWidgetPonto()

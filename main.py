@@ -1,7 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 from windows.mainWindow import MainWindow
-from PyQt5 import QtCore
 
 
 class Main():

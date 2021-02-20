@@ -1,5 +1,3 @@
-from PyQt5.QtCore import pyqtBoundSignal
-
 class Window():
     xmin = 0
     xmax = 800
@@ -7,7 +5,7 @@ class Window():
     ymax = 450
 
     @staticmethod
-    def moveLeft(seçf):
+    def moveLeft():
         Window.xmin -= 5
         Window.xmax -= 5
 
@@ -28,7 +26,7 @@ class Window():
 
     @staticmethod
     def zoomIn():
-        if ( (Window.ymax > (Window.ymin + 50) ) and (Window.xmax > ( Window.xmin + 50 ) ) ):
+        if ((Window.ymax > (Window.ymin + 50)) and (Window.xmax > (Window.xmin + 50))):
             Window.ymin += 5
             Window.ymax -= 5
             Window.xmin += 5
