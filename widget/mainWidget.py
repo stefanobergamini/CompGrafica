@@ -21,4 +21,5 @@ class MainWidget(QWidget):
         grid.addWidget(leftWidget, 0, 0)
         grid.addWidget(objectsList, 1, 0)
         grid.addWidget(rightWidget, 0, 1)
+
         self.setLayout(grid)

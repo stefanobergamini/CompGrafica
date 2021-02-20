@@ -1,5 +1,6 @@
 from object.object2D import Object2D
 from PyQt5.QtCore import QPoint
+from object.objects import Objects
 
 
 class Point(QPoint, Object2D):
@@ -7,7 +8,7 @@ class Point(QPoint, Object2D):
         super().__init__(x, y)
         self.x = x
         self.y = y
-        self.label = "Point ({},{})".format(x, y)
+        self.label = "#{}: Point ({},{})".format(Objects.numberObjects, x, y)
 
     def draw(self, painter):
         pointsTransformed = self.transformViewport([self])[0]

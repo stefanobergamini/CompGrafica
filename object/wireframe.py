@@ -1,11 +1,12 @@
 from object.object2D import Object2D
 from object.point import Point
+from object.objects import Objects
 
 
 class Wireframe(Object2D):
     def __init__(self, points):
         self.points = points
-        self.label = "Wireframe Points: {}".format(
+        self.label = "#{}: Wireframe Points: {}".format(Objects.numberObjects,
             self.formatPointsLabel(points))
 
     def formatPointsLabel(self, points):

@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QLabel
 from PyQt5 import QtCore
 from object.objects import Objects
+from widget.transformationWidget import TransformationWidget
 
 
 class ObjectsList(QWidget):
@@ -12,11 +13,13 @@ class ObjectsList(QWidget):
         vbox = QVBoxLayout(self)
         self.listWidget = QListWidget()
         self.objectListRendered = []
+        self.transformationWidget = None
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.renderObjectList)
         self.timer.start(1000 / 60)
 
+        self.listWidget.itemDoubleClicked.connect(self.launchTransformationWidget)
         vbox.addWidget(QLabel('Objects:'))
         vbox.addWidget(self.listWidget)
 
@@ -29,3 +32,8 @@ class ObjectsList(QWidget):
             self.listWidget.addItem(listWidgetItem)
         self.objectListRendered = Objects.listObjects.copy()
 
+    def launchTransformationWidget(self, item):
+        Objects.selectObject(item.text())
+        if (self.transformationWidget is None):
+            self.transformationWidget = TransformationWidget()
+        self.transformationWidget.show()

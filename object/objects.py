@@ -1,6 +1,7 @@
 class Objects:
     listObjects = []
-    selectObject = None
+    selectedObject = None
+    numberObjects = 1
 
     @staticmethod
     def clearObjects(object):
@@ -9,12 +10,15 @@ class Objects:
     @staticmethod
     def addObject(object):
         Objects.listObjects.append(object)
+        Objects.numberObjects += 1
 
     @staticmethod
-    def selectObject(object):
-        Objects.selectObject = object
-        print(Objects.selectObject)
+    def selectObject(objectLabel):
+        for object in Objects.listObjects:
+            if (object.label == objectLabel):
+                Objects.selectedObject = object
+                break
 
     @staticmethod
     def clearSelectObject():
-        Objects.selectObject = None
+        Objects.selectedObject = None

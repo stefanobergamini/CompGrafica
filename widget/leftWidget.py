@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QPushButton, QWidget
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
+
 from windows.window import Window
 
 
@@ -52,9 +53,8 @@ class LeftWidget(QWidget):
         self.buttonZoomOut.setGeometry(86, 125, 86, 25)
 
     def show_new_window_ponto(self):
-        if self.coordinatesWidgetPonto is None:
-            self.coordinatesWidgetPonto = CoordinatesWidgetPonto()
-        self.coordinatesWidgetPonto.show()
+        self.transformation = TransformationWidget()
+        self.transformation.show()
 
     def show_new_window_linha(self):
         if self.coordinatesWidgetLinha is None:

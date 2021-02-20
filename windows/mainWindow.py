@@ -11,4 +11,5 @@ class MainWindow(QMainWindow):
         self.setFixedSize(1000, 470)
         mainWidget = MainWidget()
         mainWidget.show()
+
         self.setCentralWidget(mainWidget)
