@@ -8,7 +8,6 @@ class Point(QPoint, Object2D):
         self.x = x
         self.y = y
         self.label = "Point ({},{})".format(x, y)
-        self.angle = 90
 
     def draw(self, painter):
         pointsTransformed = self.transformViewport([self])[0]

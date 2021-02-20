@@ -15,7 +15,7 @@ class ObjectsList(QWidget):
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.renderObjectList)
-        self.timer.start(1000)
+        self.timer.start(1000 / 60)
 
         vbox.addWidget(QLabel('Objects:'))
         vbox.addWidget(self.listWidget)

@@ -7,7 +7,6 @@ class Wireframe(Object2D):
         self.points = points
         self.label = "Wireframe Points: {}".format(
             self.formatPointsLabel(points))
-        self.angle = 90
 
     def formatPointsLabel(self, points):
         pointsLabel = ""

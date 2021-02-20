@@ -12,9 +12,9 @@ class Object2D:
             listOfPoints.append([xvp, yvp])
         return listOfPoints
 
-    def rotateObject(self, points, anchorPoint):
+    def rotateObject(self, points, anchorPoint, angle):
         objectRotate = []
-        rotateAngle = self.getAngleInRadianus(Window.angle)
+        rotateAngle = self.getAngleInRadianus(angle)
         for point in points:
             pointMatrix = [point.x, point.y, 1]
             translateMatrixToCenter = [[1, 0, 0], [0, 1, 0], [-anchorPoint.x, -anchorPoint.y, 1]]
@@ -25,6 +25,16 @@ class Object2D:
             rotatePoint = numpy.dot(rotatePoint, translateMatrixBack)
             objectRotate.append(rotatePoint)
         return objectRotate
+
+
+    def getCenterObject(self, points):
+        m = len(points)
+        cx = 0
+        cy = 0
+        for point in points:
+            cx += point.x
+            cy += point.y
+        return [(cx/m), (cy/m)]
 
     def getAngleInRadianus(self, angle):
         return angle * numpy.pi/180
