@@ -18,7 +18,7 @@ class RightWidget(QWidget):
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.update)
-        self.timer.start(1000 / 60)
+        self.timer.start(5000)
 
     def paintEvent(self, event):
         painter = QPainter(self)
