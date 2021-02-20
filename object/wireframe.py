@@ -42,6 +42,22 @@ class Wireframe(Object2D):
             wireframeRotate.append(Point(x, y))
         self.points = wireframeRotate
 
+    def translation(self, anchorPoint):
+        coordinates = self.translationObject(self.points, anchorPoint)
+        wireframeTranslation = []
+        for coordinate in coordinates:
+            x, y, _ = coordinate
+            wireframeTranslation.append(Point(x, y))
+        self.points = wireframeTranslation
+
+    def scale(self, scaleX, scaleY):
+        coordinates = self.scaleObject(self.points, scaleX, scaleY)
+        wireframeScale = []
+        for coordinate in coordinates:
+            x, y, _ = coordinate
+            wireframeScale.append(Point(x, y))
+        self.points = wireframeScale
+
     def getCenter(self):
         cx, cy = self.getCenterObject(self.points)
         return Point(cx, cy)

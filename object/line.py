@@ -28,6 +28,16 @@ class Line(Object2D):
         self.point1 = Point(coordinates1[0], coordinates1[1])
         self.point2 = Point(coordinates2[0], coordinates2[1])
 
+    def translation(self, anchorPoint):
+        coordinates1, coordinates2 = self.translationObject([self.point1, self.point2], anchorPoint)
+        self.point1 = Point(coordinates1[0], coordinates1[1])
+        self.point2 = Point(coordinates2[0], coordinates2[1])
+
+    def scale(self, scaleX, scaleY):
+        coordinates1, coordinates2 = self.scaleObject([self.point1, self.point2], scaleX, scaleY)
+        self.point1 = Point(coordinates1[0], coordinates1[1])
+        self.point2 = Point(coordinates2[0], coordinates2[1])
+
     def getCenter(self):
         cx, cy = self.getCenterObject([self.point1, self.point2])
         return Point(cx, cy)

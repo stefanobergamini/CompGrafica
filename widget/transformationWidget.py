@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout
 from object.objects import Objects
+from object.point import Point
 
 
 class TransformationWidget(QWidget):
@@ -19,5 +20,4 @@ class TransformationWidget(QWidget):
 
     def rotate(self):
         if (Objects.selectedObject is not None):
-            centerPoint = Objects.selectedObject.getCenter()
-            Objects.selectedObject.rotate(centerPoint, 45)
+            Objects.selectedObject.scale(2, 2)

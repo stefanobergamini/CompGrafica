@@ -20,5 +20,17 @@ class Point(QPoint, Object2D):
         self.x = x
         self.y = y
 
+    def translation(self, anchorPoint):
+        coordinates = self.translationObject([self], anchorPoint)[0]
+        x, y, _ = coordinates
+        self.x = x
+        self.y = y
+
+    def scale(self, scaleX, scaleY):
+        coordinates = self.scaleObject([self], scaleX, scaleY)[0]
+        x, y, _ = coordinates
+        self.x = x
+        self.y = y
+
     def getCenter(self):
         return self
