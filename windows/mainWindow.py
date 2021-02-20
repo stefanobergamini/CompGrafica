@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
-
 from widget.mainWidget import MainWidget
+
 
 class MainWindow(QMainWindow):
 

@@ -7,6 +7,7 @@ class Wireframe(Object2D):
         self.points = points
         self.label = "Wireframe Points: {}".format(
             self.formatPointsLabel(points))
+        self.angle = 90
 
     def formatPointsLabel(self, points):
         pointsLabel = ""
@@ -15,12 +16,10 @@ class Wireframe(Object2D):
         return pointsLabel
 
     def draw(self, painter):
+        cordinatesTransformed = self.transformViewport(self.points)
         transformedPoints = []
-        for point in self.points:
-            coordinateTransformed = self.transformViewport(point)
-            pointTransformed = Point(
-                coordinateTransformed[0], coordinateTransformed[1])
-            transformedPoints.append(pointTransformed)
+        for cordinateTransformed in cordinatesTransformed:
+            transformedPoints.append(Point(cordinateTransformed[0], cordinateTransformed[1]))
 
         if (len(transformedPoints) == 1):
             painter.drawPoint(transformedPoints[0])

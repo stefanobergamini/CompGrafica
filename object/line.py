@@ -8,6 +8,7 @@ class Line(Object2D):
         self.point2 = point2
         self.label = "Line Points: {}".format(
             self.formatPointsLabel([point1, point2]))
+        self.angle = 0
 
     def formatPointsLabel(self, points):
         pointsLabel = ""
@@ -16,8 +17,8 @@ class Line(Object2D):
         return pointsLabel
 
     def draw(self, painter):
-        coord1Transformed = self.transformViewport(self.point1)
-        coord2Transformed = self.transformViewport(self.point2)
-        p1Transformed = Point(coord1Transformed[0], coord1Transformed[1])
-        p2Transformed = Point(coord2Transformed[0], coord2Transformed[1])
-        painter.drawLine(p1Transformed, p2Transformed)
+        cordinatesTransformed = self.transformViewport([self.point1, self.point2])
+        listpoints = []
+        for cordinateTransformed in cordinatesTransformed:
+            listpoints.append(Point(cordinateTransformed[0], cordinateTransformed[1]))
+        painter.drawLine(listpoints[0], listpoints[1])

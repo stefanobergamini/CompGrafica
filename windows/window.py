@@ -3,6 +3,7 @@ class Window():
     xmax = 800
     ymin = 0
     ymax = 450
+    angle = 45
 
     @staticmethod
     def moveLeft():
