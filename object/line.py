@@ -8,7 +8,7 @@ class Line(Object2D):
         self.point2 = point2
         self.label = "Line Points: {}".format(
             self.formatPointsLabel([point1, point2]))
-        self.angle = 0
+        self.angle = 90
 
     def formatPointsLabel(self, points):
         pointsLabel = ""
