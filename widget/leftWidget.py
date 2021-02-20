@@ -53,8 +53,9 @@ class LeftWidget(QWidget):
         self.buttonZoomOut.setGeometry(86, 125, 86, 25)
 
     def show_new_window_ponto(self):
-        self.transformation = TransformationWidget()
-        self.transformation.show()
+        if self.coordinatesWidgetPonto is None:
+            self.coordinatesWidgetPonto = CoordinatesWidgetPonto()
+        self.coordinatesWidgetPonto.show()
 
     def show_new_window_linha(self):
         if self.coordinatesWidgetLinha is None:
