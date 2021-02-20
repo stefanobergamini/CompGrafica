@@ -15,53 +15,53 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetLinha = None  # No external window yet.
         self.coordinatesWidgetPonto = None  # No external window yet.
         self.coordinatesWidgetPoligono = None  # No external window yet.
-        self.btn1 = QPushButton("Up", self)
-        self.btn1.clicked.connect(Window.moveUp)
-        self.btn1.setGeometry(43, 30, 86, 25)
+        self.buttonUp = QPushButton("Up", self)
+        self.buttonUp.clicked.connect(Window.moveUp)
+        self.buttonUp.setGeometry(43, 30, 86, 25)
 
-        self.btn2 = QPushButton("Left", self)
-        self.btn2.clicked.connect(Window.moveLeft)
-        self.btn2.setGeometry(0, 55, 86, 25)
+        self.buttonLeft = QPushButton("Left", self)
+        self.buttonLeft.clicked.connect(Window.moveLeft)
+        self.buttonLeft.setGeometry(0, 55, 86, 25)
 
-        self.btn3 = QPushButton("Right", self)
-        self.btn3.clicked.connect(Window.moveRight)
-        self.btn3.setGeometry(86, 55, 86, 25)
+        self.buttonRight = QPushButton("Right", self)
+        self.buttonRight.clicked.connect(Window.moveRight)
+        self.buttonRight.setGeometry(86, 55, 86, 25)
 
-        self.btn4 = QPushButton("Down", self)
-        self.btn4.clicked.connect(Window.moveDown)
-        self.btn4.setGeometry(43, 80, 86, 25)
+        self.buttonDown = QPushButton("Down", self)
+        self.buttonDown.clicked.connect(Window.moveDown)
+        self.buttonDown.setGeometry(43, 80, 86, 25)
 
-        self.btn5 = QPushButton("Insert Point", self)
-        self.btn5.clicked.connect(self.show_new_window_ponto)
-        self.btn5.setGeometry(0, 215, 173, 25)
+        self.buttonPoint = QPushButton("Insert Point", self)
+        self.buttonPoint.clicked.connect(self.show_new_window_ponto)
+        self.buttonPoint.setGeometry(0, 215, 173, 25)
 
-        self.btn6 = QPushButton("Insert Line", self)
-        self.btn6.clicked.connect(self.show_new_window_linha)
-        self.btn6.setGeometry(0, 240, 173, 25)
+        self.buttonLine = QPushButton("Insert Line", self)
+        self.buttonLine.clicked.connect(self.show_new_window_linha)
+        self.buttonLine.setGeometry(0, 240, 173, 25)
 
-        self.btn7 = QPushButton("Insert Poligon", self)
-        self.btn7.clicked.connect(self.show_new_window_poligono)
-        self.btn7.setGeometry(0, 265, 173, 25)
+        self.buttonPolygon = QPushButton("Insert Poligon", self)
+        self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
+        self.buttonPolygon.setGeometry(0, 265, 173, 25)
 
-        self.btn8 = QPushButton("Zoom In", self)
-        self.btn8.clicked.connect(Window.zoomIn)
-        self.btn8.setGeometry(0, 125, 86, 25)
+        self.buttonZoomIn = QPushButton("Zoom In", self)
+        self.buttonZoomIn.clicked.connect(Window.zoomIn)
+        self.buttonZoomIn.setGeometry(0, 125, 86, 25)
 
-        self.btn9 = QPushButton("Zoom Out", self)
-        self.btn9.clicked.connect(Window.zoomOut)
-        self.btn9.setGeometry(86, 125, 86, 25)
+        self.buttonZoomOut = QPushButton("Zoom Out", self)
+        self.buttonZoomOut.clicked.connect(Window.zoomOut)
+        self.buttonZoomOut.setGeometry(86, 125, 86, 25)
 
-    def show_new_window_ponto(self, checked):
+    def show_new_window_ponto(self):
         if self.coordinatesWidgetPonto is None:
             self.coordinatesWidgetPonto = CoordinatesWidgetPonto()
         self.coordinatesWidgetPonto.show()
 
-    def show_new_window_linha(self, checked):
+    def show_new_window_linha(self):
         if self.coordinatesWidgetLinha is None:
             self.coordinatesWidgetLinha = CoordinatesWidgetLinha()
         self.coordinatesWidgetLinha.show()
 
-    def show_new_window_poligono(self, checked):
+    def show_new_window_poligono(self):
         if self.coordinatesWidgetPoligono is None:
             self.coordinatesWidgetPoligono = CoordinatesWidgetPoligono()
         self.coordinatesWidgetPoligono.show()

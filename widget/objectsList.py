@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QListWidget, QWidget, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QLabel
 from PyQt5 import QtCore
 from object.objects import Objects
 
@@ -11,6 +11,7 @@ class ObjectsList(QWidget):
         super().__init__()
         vbox = QVBoxLayout(self)
         self.listWidget = QListWidget()
+        self.objectListRendered = []
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.renderObjectList)
@@ -20,7 +21,11 @@ class ObjectsList(QWidget):
         vbox.addWidget(self.listWidget)
 
     def renderObjectList(self):
-        listaObjects = Objects.listObjects
+        if(Objects.listObjects == self.objectListRendered):
+            return
         self.listWidget.clear()
-        for object in listaObjects:
-            self.listWidget.addItem(object.label)
+        for object in Objects.listObjects:
+            listWidgetItem = QListWidgetItem(object.label)
+            self.listWidget.addItem(listWidgetItem)
+        self.objectListRendered = Objects.listObjects.copy()
+
