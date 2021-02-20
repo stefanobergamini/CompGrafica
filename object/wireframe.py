@@ -33,3 +33,15 @@ class Wireframe(Object2D):
                 else:
                     painter.drawLine(
                         transformedPoints[position], transformedPoints[0])
+
+    def rotate(self, anchorPoint, angle):
+        coordinates = self.rotateObject(self.points, anchorPoint, angle)
+        wireframeRotate = []
+        for coordinate in coordinates:
+            x, y, _ = coordinate
+            wireframeRotate.append(Point(x, y))
+        self.points = wireframeRotate
+
+    def getCenter(self):
+        cx, cy = self.getCenterObject(self.points)
+        return Point(cx, cy)

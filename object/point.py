@@ -13,3 +13,15 @@ class Point(QPoint, Object2D):
     def draw(self, painter):
         pointsTransformed = self.transformViewport([self])[0]
         painter.drawPoint(pointsTransformed[0], pointsTransformed[1])
+
+    def rotate(self, anchorPoint, angle):
+        coordinates = self.rotateObject(self.points, anchorPoint, angle)
+        wireframeRotate = []
+        for coordinate in coordinates:
+            x, y, _ = coordinate
+            wireframeRotate.append(Point(x, y))
+        self.points = wireframeRotate
+
+    def getCenter(self):
+        cx, cy = self.getCenterObject(self.points)
+        return Point(cx, cy)

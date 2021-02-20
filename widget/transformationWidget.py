@@ -1,8 +1,5 @@
-import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout
 from object.objects import Objects
-from object.point import Point
 
 
 class TransformationWidget(QWidget):
