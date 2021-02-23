@@ -102,6 +102,8 @@ class TransformationWidget(QWidget):
 
     def rotateAroundPoint(self):
         if (Objects.selectedObject is not None):
+            if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == "" or self.angle.displayText() == ""):
+                return
             x = int(self.coordenadaX.displayText())
             y = int(self.coordenadaY.displayText())
             receivedAngle = int(self.angle.displayText())
@@ -110,18 +112,24 @@ class TransformationWidget(QWidget):
 
     def rotateAroundCenter(self):
         if (Objects.selectedObject is not None):
+            if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == "" or self.angle.displayText() == ""):
+                return
             receivedAngle = int(self.angle.displayText())
             center = Objects.selectedObject.getCenter()
             Objects.selectedObject.rotate(center, receivedAngle)
 
     def rotateAroundOrigin(self):
         if (Objects.selectedObject is not None):
+            if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == "" or self.angle.displayText() == ""):
+                return
             receivedAngle = int(self.angle.displayText())
             origin = Point(0, 0)
             Objects.selectedObject.rotate(origin, receivedAngle)
 
     def translationAroundPoint(self):
         if (Objects.selectedObject is not None):
+            if (self.pointX.displayText() == "" or self.pointY.displayText() == ""):
+                return
             x = int(self.pointX.displayText())
             y = int(self.pointY.displayText())
             point = Point(x, y)
@@ -129,6 +137,8 @@ class TransformationWidget(QWidget):
 
     def scaling(self):
         if (Objects.selectedObject is not None):
+            if (self.scaleX.displayText() == "" or self.scaleY.displayText() == ""):
+                return
             x = int(self.scaleX.displayText())
             y = int(self.scaleY.displayText())
             Objects.selectedObject.scale(x, y)

@@ -31,6 +31,8 @@ class CoordinatesWidgetPonto(QWidget):
         self.setLayout(layout)
 
     def printXeY(self):
+        if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == ""):
+            return
         x = int(self.coordenadaX.displayText())
         y = int(self.coordenadaY.displayText())
         point = Point(x, y)
