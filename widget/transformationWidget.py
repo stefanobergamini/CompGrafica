@@ -38,12 +38,12 @@ class TransformationWidget(QWidget):
         # END OF THE ROTATION PART START OF THE TRANSLATION ----------------
 
         self.pointX = QLineEdit()
-        self.labelPointX = QLabel('Point X:')
+        self.labelPointX = QLabel('Translate X:')
 
         self.pointY = QLineEdit()
-        self.labelPointY = QLabel('Point Y:')
+        self.labelPointY = QLabel('Translate Y:')
 
-        self.Translation = QPushButton('Translate to Point')
+        self.Translation = QPushButton('Translate')
         self.Translation.setStyleSheet('font-size: 18px')
         self.Translation.clicked.connect(self.translationAroundPoint)
 
@@ -112,7 +112,7 @@ class TransformationWidget(QWidget):
 
     def rotateAroundCenter(self):
         if (Objects.selectedObject is not None):
-            if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == "" or self.angle.displayText() == ""):
+            if (self.angle.displayText() == ""):
                 return
             receivedAngle = int(self.angle.displayText())
             center = Objects.selectedObject.getCenter()
@@ -120,7 +120,7 @@ class TransformationWidget(QWidget):
 
     def rotateAroundOrigin(self):
         if (Objects.selectedObject is not None):
-            if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == "" or self.angle.displayText() == ""):
+            if (self.angle.displayText() == ""):
                 return
             receivedAngle = int(self.angle.displayText())
             origin = Point(0, 0)
@@ -139,8 +139,8 @@ class TransformationWidget(QWidget):
         if (Objects.selectedObject is not None):
             if (self.scaleX.displayText() == "" or self.scaleY.displayText() == ""):
                 return
-            x = int(self.scaleX.displayText())
-            y = int(self.scaleY.displayText())
+            x = float(self.scaleX.displayText())
+            y = float(self.scaleY.displayText())
             Objects.selectedObject.scale(x, y)
 
     def clearLabelsRotation(self):
