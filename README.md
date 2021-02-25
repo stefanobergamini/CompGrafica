@@ -4,7 +4,7 @@ Trabalho para matéria INE5420 onde se é criado um Sistema Gráfico Interativo 
 
 ## Utilização
 
-Ao executar a main.py o Sistema ira aparecer, nele são apresentados os botões para mover a window, de zoom in e zoom out, para inserir ponto, linha ou wireframe (polígono) basta clicar no seu respectivo botão de inserção. Para a criação de Ponto e Linha basta inserir as coordenadas nos campos de entradas de texto o valor desejado, para o Wireframe utilize da seguinte formatação "x,y;x1,y1;x2,y2; ...". 
+Ao executar a main.py ou o makefile o Sistema ira aparecer, nele são apresentados os botões para mover a window, de zoom in e zoom out, para inserir ponto, linha ou wireframe (polígono) basta clicar no seu respectivo botão de inserção. Para a criação de Ponto e Linha basta inserir as coordenadas nos campos de entradas de texto o valor desejado, para o Wireframe utilize da seguinte formatação "x,y;x1,y1;x2,y2; ...". 
 
 Após criados esses objetos são inseridos na lista presente no canto esquerdo da janela principal do sistema. Para realizar transformações sobre esses objetos basta clicar duas vezes sobre o objeto desejado, uma nova janela sera aberta. 
 
