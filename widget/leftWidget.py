@@ -32,18 +32,6 @@ class LeftWidget(QWidget):
         self.buttonDown.clicked.connect(Window.moveDown)
         self.buttonDown.setGeometry(43, 80, 86, 25)
 
-        self.buttonPoint = QPushButton("Insert Point", self)
-        self.buttonPoint.clicked.connect(self.show_new_window_ponto)
-        self.buttonPoint.setGeometry(0, 215, 173, 25)
-
-        self.buttonLine = QPushButton("Insert Line", self)
-        self.buttonLine.clicked.connect(self.show_new_window_linha)
-        self.buttonLine.setGeometry(0, 240, 173, 25)
-
-        self.buttonPolygon = QPushButton("Insert Poligon", self)
-        self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
-        self.buttonPolygon.setGeometry(0, 265, 173, 25)
-
         self.buttonZoomIn = QPushButton("Zoom In", self)
         self.buttonZoomIn.clicked.connect(Window.zoomIn)
         self.buttonZoomIn.setGeometry(0, 125, 86, 25)
@@ -51,6 +39,28 @@ class LeftWidget(QWidget):
         self.buttonZoomOut = QPushButton("Zoom Out", self)
         self.buttonZoomOut.clicked.connect(Window.zoomOut)
         self.buttonZoomOut.setGeometry(86, 125, 86, 25)
+
+        self.buttonRotateLeft = QPushButton("Rotate Window Left", self)
+        ##self.buttonRotateLeft.clicked.connect(Window.NOME_DA_FUNCAO)
+        self.buttonRotateLeft.setGeometry(0, 165, 173, 25)
+
+        self.buttonRotateRight = QPushButton("Rotate Window Right", self)
+        ##self.buttonRotateRight.clicked.connect(Window.NOME_DA_FUNCAO)
+        self.buttonRotateRight.setGeometry(0, 190, 173, 25)
+
+        self.buttonPoint = QPushButton("Insert Point", self)
+        self.buttonPoint.clicked.connect(self.show_new_window_ponto)
+        self.buttonPoint.setGeometry(0, 230, 173, 25)
+
+        self.buttonLine = QPushButton("Insert Line", self)
+        self.buttonLine.clicked.connect(self.show_new_window_linha)
+        self.buttonLine.setGeometry(0, 255, 173, 25)
+
+        self.buttonPolygon = QPushButton("Insert Poligon", self)
+        self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
+        self.buttonPolygon.setGeometry(0, 280, 173, 25)
+
+
 
     def show_new_window_ponto(self):
         if self.coordinatesWidgetPonto is None:
