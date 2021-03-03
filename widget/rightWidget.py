@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QPainter, QPalette, QColor
 from PyQt5 import QtCore
-from models.world import World
 from models.viewport import Viewport
+from models.window import Window
 
 
 class RightWidget(QWidget):
@@ -22,5 +22,6 @@ class RightWidget(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        for object in World.listObjects:
+        Window.transformSCN()
+        for object in Window.listObjects:
             object.draw(painter)

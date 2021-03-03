@@ -1,4 +1,7 @@
 import numpy
+from models.world import World
+from models.point import Point
+from models.object import Object
 
 
 class Window():
@@ -6,7 +9,7 @@ class Window():
     xmax = 800
     ymin = 0
     ymax = 450
-    objects = []
+    listObjects = []
     angle = 0
 
     @staticmethod
@@ -20,6 +23,19 @@ class Window():
         scn = numpy.dot(translateWindowToCenter, rotateWindow)
         scn = numpy.dot(scn, scaleWindow)
         return scn
+
+    @staticmethod
+    def transformSCN():
+        Window.listObjects = []
+        for object in World.listObjects:
+            Object(object.points, object.type)
+            Window.listObjects.append(Object(object.points, object.type))
+        print(Window.listObjects)
+
+    @staticmethod
+    def rotateWindow(angle):
+        Window.angle += angle
+
 
     @staticmethod
     def getCenterWindow():
