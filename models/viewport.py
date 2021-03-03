@@ -3,3 +3,4 @@ class Viewport():
     xmax = 800
     ymin = 0
     ymax = 450
+    objects = []

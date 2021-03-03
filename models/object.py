@@ -1,19 +1,13 @@
-from object.object2D import Object2D
-from object.point import Point
-from object.objects import Objects
+from models.object2D import Object2D
+from models.point import Point
+from models.world import World
 
 
-class Wireframe(Object2D):
-    def __init__(self, points):
+class Object(Object2D):
+    def __init__(self, points, type):
         self.points = points
-        self.label = "#{}: Wireframe Points: {}".format(Objects.numberObjects,
-            self.formatPointsLabel(points))
-
-    def formatPointsLabel(self, points):
-        pointsLabel = ""
-        for point in points:
-            pointsLabel += "({},{}) ".format(point.x, point.y)
-        return pointsLabel
+        self.type = type
+        self.label = "#{}: {}".format(World.numberObjects, self.type)
 
     def draw(self, painter):
         cordinatesTransformed = self.transformViewport(self.points)

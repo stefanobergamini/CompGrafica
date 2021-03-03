@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QGridLayout, QLineEdit, QLabel
-from object.objects import Objects
-from object.point import Point
+from models.world import World
+from models.point import Point
 
 
 class TransformationWidget(QWidget):
@@ -101,47 +101,47 @@ class TransformationWidget(QWidget):
         self.setLayout(layout)
 
     def rotateAroundPoint(self):
-        if (Objects.selectedObject is not None):
+        if (World.selectedObject is not None):
             if (self.coordenadaX.displayText() == "" or self.coordenadaY.displayText() == "" or self.angle.displayText() == ""):
                 return
             x = int(self.coordenadaX.displayText())
             y = int(self.coordenadaY.displayText())
             receivedAngle = int(self.angle.displayText())
             anchorPoint = Point(x, y)
-            Objects.selectedObject.rotate(anchorPoint, receivedAngle)
+            World.selectedObject.rotate(anchorPoint, receivedAngle)
 
     def rotateAroundCenter(self):
-        if (Objects.selectedObject is not None):
+        if (World.selectedObject is not None):
             if (self.angle.displayText() == ""):
                 return
             receivedAngle = int(self.angle.displayText())
-            center = Objects.selectedObject.getCenter()
-            Objects.selectedObject.rotate(center, receivedAngle)
+            center = World.selectedObject.getCenter()
+            World.selectedObject.rotate(center, receivedAngle)
 
     def rotateAroundOrigin(self):
-        if (Objects.selectedObject is not None):
+        if (World.selectedObject is not None):
             if (self.angle.displayText() == ""):
                 return
             receivedAngle = int(self.angle.displayText())
             origin = Point(0, 0)
-            Objects.selectedObject.rotate(origin, receivedAngle)
+            World.selectedObject.rotate(origin, receivedAngle)
 
     def translationAroundPoint(self):
-        if (Objects.selectedObject is not None):
+        if (World.selectedObject is not None):
             if (self.pointX.displayText() == "" or self.pointY.displayText() == ""):
                 return
             x = int(self.pointX.displayText())
             y = int(self.pointY.displayText())
             point = Point(x, y)
-            Objects.selectedObject.translation(point)
+            World.selectedObject.translation(point)
 
     def scaling(self):
-        if (Objects.selectedObject is not None):
+        if (World.selectedObject is not None):
             if (self.scaleX.displayText() == "" or self.scaleY.displayText() == ""):
                 return
             x = float(self.scaleX.displayText())
             y = float(self.scaleY.displayText())
-            Objects.selectedObject.scale(x, y)
+            World.selectedObject.scale(x, y)
 
     def clearLabelsRotation(self):
         self.coordenadaX.clear()

@@ -3,7 +3,7 @@ from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
 
-from windows.window import Window
+from models.window import Window
 
 
 class LeftWidget(QWidget):

@@ -2,8 +2,8 @@ import sys
 
 from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QLabel
 from PyQt5 import QtCore
-from object.objects import Objects
 from widget.transformationWidget import TransformationWidget
+from models.world import World
 
 
 class ObjectsList(QWidget):
@@ -24,16 +24,16 @@ class ObjectsList(QWidget):
         vbox.addWidget(self.listWidget)
 
     def renderObjectList(self):
-        if(Objects.listObjects == self.objectListRendered):
+        if(World.listObjects == self.objectListRendered):
             return
         self.listWidget.clear()
-        for object in Objects.listObjects:
+        for object in World.listObjects:
             listWidgetItem = QListWidgetItem(object.label)
             self.listWidget.addItem(listWidgetItem)
-        self.objectListRendered = Objects.listObjects.copy()
+        self.objectListRendered = World.listObjects.copy()
 
     def launchTransformationWidget(self, item):
-        Objects.selectObject(item.text())
+        World.selectObject(item.text())
         if (self.transformationWidget is None):
             self.transformationWidget = TransformationWidget()
         self.transformationWidget.show()

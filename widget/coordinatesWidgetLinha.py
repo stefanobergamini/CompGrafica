@@ -1,9 +1,9 @@
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
-from object.objects import Objects
-from object.point import Point
-from object.line import Line
+from models.world import World
+from models.point import Point
+from models.object import Object
 from widget.objectsList import ObjectsList
 
 class CoordinatesWidgetLinha(QWidget):
@@ -49,8 +49,9 @@ class CoordinatesWidgetLinha(QWidget):
         x2 = int(self.coordenadaX2.displayText())
         y2 = int(self.coordenadaY2.displayText())
         ponto2 = Point(x2, y2)
-        line = Line(ponto1, ponto2)
-        Objects.addObject(line)
+
+        line = Object([ponto1, ponto2], "Line")
+        World.addObject(line)
         self.close()
         self.clearLabels()
 

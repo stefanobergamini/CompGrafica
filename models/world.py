@@ -1,24 +1,24 @@
-class Objects:
+class World:
     listObjects = []
     selectedObject = None
     numberObjects = 1
 
     @staticmethod
     def clearObjects(object):
-        Objects.listObjects = []
+        World.listObjects = []
 
     @staticmethod
     def addObject(object):
-        Objects.listObjects.append(object)
-        Objects.numberObjects += 1
+        World.listObjects.append(object)
+        World.numberObjects += 1
 
     @staticmethod
     def selectObject(objectLabel):
-        for object in Objects.listObjects:
+        for object in World.listObjects:
             if (object.label == objectLabel):
-                Objects.selectedObject = object
+                World.selectedObject = object
                 break
 
     @staticmethod
     def clearSelectObject():
-        Objects.selectedObject = None
+        World.selectedObject = None
