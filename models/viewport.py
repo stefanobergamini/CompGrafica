@@ -28,7 +28,7 @@ class Viewport():
         for object in Window.listObjects:
             listPoints = []
             for point in object.points:
-                xvp = ((point.x - xmin) / (xmax - xmin)) * (Viewport.xmax - Viewport.xmin) + 10
-                yvp = (1 - ((point.y - ymin) / (ymax - ymin))) * (Viewport.ymax - Viewport.ymin) + 10
+                xvp = ((point.x - xmin) / (xmax - xmin)) * (Viewport.xmax - Viewport.xmin)
+                yvp = (1 - ((point.y - ymin) / (ymax - ymin))) * (Viewport.ymax - Viewport.ymin)
                 listPoints.append(Point(xvp, yvp))
             Viewport.listObjects.append(Object(listPoints, object.type))
