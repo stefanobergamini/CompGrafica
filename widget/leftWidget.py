@@ -76,10 +76,10 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetPoligono.show()
 
     def rotateRight(self):
-        Window.rotateWindow(10)
+        Window.rotateWindow(-10)
 
     def rotateLeft(self):
-        Window.rotateWindow(-10)
+        Window.rotateWindow(10)
 
     def moveUp(self):
         Window.move([0, 5])

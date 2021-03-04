@@ -1,3 +1,4 @@
+import numpy
 from models.world import World
 from models.window import Window
 from models.point import Point
@@ -17,10 +18,10 @@ class Viewport():
         Window.listObjects = []
 
         wcx, wcy = Window.center()
-        windowAngle = Window.angle()
+        angle = numpy.radians(Window.rotateAngle)
         for object in World.listObjects:
             rotateObject = Object(object.points, object.type)
-            rotateObject.rotate(Point(wcx, wcy), windowAngle)
+            rotateObject.rotate(Point(wcx, wcy), angle)
             Window.listObjects.append(rotateObject)
 
         (xmin, ymin), (xmax, ymax) = Window.expanded_boundaries()

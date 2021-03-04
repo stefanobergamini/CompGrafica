@@ -5,12 +5,11 @@ class Object2D:
 
     def rotateObject(self, points, anchorPoint, angle):
         objectRotate = []
-        rotateAngle = self.getAngleInRadianus(angle)
         for point in points:
             pointMatrix = [point.x, point.y, 1]
             translateMatrixToCenter = [[1, 0, 0], [0, 1, 0], [-anchorPoint.x, -anchorPoint.y, 1]]
             rotatePoint = numpy.dot(pointMatrix, translateMatrixToCenter)
-            rotateMatrix = [[numpy.cos(rotateAngle), -numpy.sin(rotateAngle), 0], [numpy.sin(rotateAngle), numpy.cos(rotateAngle), 0], [0, 0, 1]]
+            rotateMatrix = [[numpy.cos(angle), -numpy.sin(angle), 0], [numpy.sin(angle), numpy.cos(angle), 0], [0, 0, 1]]
             rotatePoint = numpy.dot(rotatePoint, rotateMatrix)
             translateMatrixBack = [[1, 0, 0], [0, 1, 0], [anchorPoint.x, anchorPoint.y, 1]]
             rotatePoint = numpy.dot(rotatePoint, translateMatrixBack)

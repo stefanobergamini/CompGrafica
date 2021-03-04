@@ -1,3 +1,4 @@
+import numpy
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QGridLayout, QLineEdit, QLabel
 from models.world import World
 from models.point import Point
@@ -108,15 +109,15 @@ class TransformationWidget(QWidget):
             y = int(self.coordenadaY.displayText())
             receivedAngle = int(self.angle.displayText())
             anchorPoint = Point(x, y)
-            World.selectedObject.rotate(anchorPoint, receivedAngle)
+            World.selectedObject.rotate(anchorPoint, numpy.radians(receivedAngle))
 
     def rotateAroundCenter(self):
         if (World.selectedObject is not None):
             if (self.angle.displayText() == ""):
                 return
-            receivedAngle = int(self.angle.displayText())
+            receivedAngle = numpy.int(self.angle.displayText())
             center = World.selectedObject.getCenter()
-            World.selectedObject.rotate(center, receivedAngle)
+            World.selectedObject.rotate(center, numpy.radians(receivedAngle))
 
     def rotateAroundOrigin(self):
         if (World.selectedObject is not None):
@@ -124,7 +125,7 @@ class TransformationWidget(QWidget):
                 return
             receivedAngle = int(self.angle.displayText())
             origin = Point(0, 0)
-            World.selectedObject.rotate(origin, receivedAngle)
+            World.selectedObject.rotate(origin, numpy.radians(receivedAngle))
 
     def translationAroundPoint(self):
         if (World.selectedObject is not None):

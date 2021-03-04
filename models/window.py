@@ -8,6 +8,7 @@ class Window():
     width = 800
     height = 450
     BORDER = 0.05
+    rotateAngle = 0
     listObjects = []
 
     points = [
@@ -46,15 +47,7 @@ class Window():
 
     @staticmethod
     def rotateWindow(angle):
-        windowAngle = numpy.radians(angle)
-        wcx, wcy = Window.center()
-        rotateWindow = [[numpy.cos(windowAngle), -numpy.sin(windowAngle), 0], [numpy.sin(windowAngle), numpy.cos(windowAngle), 0], [0, 0, 1]]
-        rotatePoints = []
-        for point in Window.points:
-            rotatePoint = numpy.array([point[0], point[1], 1])
-            x, y, _ = rotatePoint.dot(rotateWindow)
-            rotatePoints.append((x, y))
-        Window.points = rotatePoints
+        Window.rotateAngle += angle
 
     @staticmethod
     def move(offSet):
