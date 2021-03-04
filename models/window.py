@@ -7,6 +7,7 @@ from models.object import Object
 class Window():
     width = 800
     height = 450
+    BORDER = 0.05
     listObjects = []
 
     points = [
@@ -16,6 +17,15 @@ class Window():
             (0, 0),
         ]
     points.append(points[0])
+
+    @staticmethod
+    def expanded_boundaries():
+        width = Window.points[1][0] - Window.points[3][0]
+        height = Window.points[1][1] - Window.points[3][1]
+        factor = numpy.multiply((width, height), Window.BORDER)
+        return (
+            numpy.subtract(Window.points[3], factor),
+            numpy.add(Window.points[1], factor))
 
     @staticmethod
     def boundaries():

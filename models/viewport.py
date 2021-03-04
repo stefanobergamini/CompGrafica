@@ -6,9 +6,9 @@ from models.object import Object
 
 class Viewport():
     xmin = 0
-    xmax = 790
+    xmax = 800
     ymin = 0
-    ymax = 440
+    ymax = 450
     listObjects = []
 
     @staticmethod
@@ -23,8 +23,7 @@ class Viewport():
             rotateObject.rotate(Point(wcx, wcy), windowAngle)
             Window.listObjects.append(rotateObject)
 
-        (xmin, ymin), (xmax, ymax) = Window.boundaries()
-        print(Window.boundaries())
+        (xmin, ymin), (xmax, ymax) = Window.expanded_boundaries()
         for object in Window.listObjects:
             listPoints = []
             for point in object.points:
