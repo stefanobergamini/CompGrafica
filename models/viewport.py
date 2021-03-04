@@ -15,14 +15,6 @@ class Viewport():
     @staticmethod
     def transformViewport():
         Viewport.listObjects = []
-        Window.listObjects = []
-
-        wcx, wcy = Window.center()
-        angle = numpy.radians(Window.rotateAngle)
-        for object in World.listObjects:
-            rotateObject = Object(object.points, object.type)
-            rotateObject.rotate(Point(wcx, wcy), angle)
-            Window.listObjects.append(rotateObject)
 
         (xmin, ymin), (xmax, ymax) = Window.expanded_boundaries()
         for object in Window.listObjects:

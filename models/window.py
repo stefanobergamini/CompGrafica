@@ -20,6 +20,17 @@ class Window():
     points.append(points[0])
 
     @staticmethod
+    def normalizedObjects():
+        Window.listObjects = []
+        wcx, wcy = Window.center()
+        angle = numpy.radians(Window.rotateAngle)
+        for object in World.listObjects:
+            rotateObject = Object(object.points, object.type)
+            rotateObject.rotate(Point(wcx, wcy), angle)
+            Window.listObjects.append(rotateObject)
+
+
+    @staticmethod
     def expanded_boundaries():
         width = Window.points[1][0] - Window.points[3][0]
         height = Window.points[1][1] - Window.points[3][1]

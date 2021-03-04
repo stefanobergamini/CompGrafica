@@ -30,8 +30,8 @@ class RightWidget(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.drawRoundedRect(rect, 1, 1);
-
+        painter.drawRoundedRect(rect, 1, 1)
+        Window.normalizedObjects()
         Viewport.transformViewport()
         for object in Viewport.listObjects:
             object.draw(painter)
