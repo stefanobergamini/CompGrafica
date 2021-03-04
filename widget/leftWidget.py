@@ -17,35 +17,35 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetPonto = None  # No external window yet.
         self.coordinatesWidgetPoligono = None  # No external window yet.
         self.buttonUp = QPushButton("Up", self)
-        self.buttonUp.clicked.connect(Window.moveUp)
+        self.buttonUp.clicked.connect(self.moveUp)
         self.buttonUp.setGeometry(43, 30, 86, 25)
 
         self.buttonLeft = QPushButton("Left", self)
-        self.buttonLeft.clicked.connect(Window.moveLeft)
+        self.buttonLeft.clicked.connect(self.moveLeft)
         self.buttonLeft.setGeometry(0, 55, 86, 25)
 
         self.buttonRight = QPushButton("Right", self)
-        self.buttonRight.clicked.connect(Window.moveRight)
+        self.buttonRight.clicked.connect(self.moveRight)
         self.buttonRight.setGeometry(86, 55, 86, 25)
 
         self.buttonDown = QPushButton("Down", self)
-        self.buttonDown.clicked.connect(Window.moveDown)
+        self.buttonDown.clicked.connect(self.moveDown)
         self.buttonDown.setGeometry(43, 80, 86, 25)
 
         self.buttonZoomIn = QPushButton("Zoom In", self)
-        self.buttonZoomIn.clicked.connect(Window.zoomIn)
+        self.buttonZoomIn.clicked.connect(self.zoomIn)
         self.buttonZoomIn.setGeometry(0, 125, 86, 25)
 
         self.buttonZoomOut = QPushButton("Zoom Out", self)
-        self.buttonZoomOut.clicked.connect(Window.zoomOut)
+        self.buttonZoomOut.clicked.connect(self.zoomOut)
         self.buttonZoomOut.setGeometry(86, 125, 86, 25)
 
         self.buttonRotateLeft = QPushButton("Rotate Window Left", self)
-        ##self.buttonRotateLeft.clicked.connect(Window.NOME_DA_FUNCAO)
+        self.buttonRotateLeft.clicked.connect(self.rotateLeft)
         self.buttonRotateLeft.setGeometry(0, 165, 173, 25)
 
         self.buttonRotateRight = QPushButton("Rotate Window Right", self)
-        ##self.buttonRotateRight.clicked.connect(Window.NOME_DA_FUNCAO)
+        self.buttonRotateRight.clicked.connect(self.rotateRight)
         self.buttonRotateRight.setGeometry(0, 190, 173, 25)
 
         self.buttonPoint = QPushButton("Insert Point", self)
@@ -59,8 +59,6 @@ class LeftWidget(QWidget):
         self.buttonPolygon = QPushButton("Insert Poligon", self)
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
         self.buttonPolygon.setGeometry(0, 280, 173, 25)
-
-
 
     def show_new_window_ponto(self):
         if self.coordinatesWidgetPonto is None:
@@ -76,3 +74,27 @@ class LeftWidget(QWidget):
         if self.coordinatesWidgetPoligono is None:
             self.coordinatesWidgetPoligono = CoordinatesWidgetPoligono()
         self.coordinatesWidgetPoligono.show()
+
+    def rotateRight(self):
+        Window.rotateWindow(10)
+
+    def rotateLeft(self):
+        Window.rotateWindow(-10)
+
+    def moveUp(self):
+        Window.move([0, 5])
+
+    def moveDown(self):
+        Window.move([0, -5])
+
+    def moveLeft(self):
+        Window.move([-5, 0])
+
+    def moveRight(self):
+        Window.move([5, 0])
+
+    def zoomIn(self):
+        Window.zoom(0.9)
+
+    def zoomOut(self):
+        Window.zoom(1.1)

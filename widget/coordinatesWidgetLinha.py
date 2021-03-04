@@ -6,6 +6,7 @@ from models.point import Point
 from models.object import Object
 from widget.objectsList import ObjectsList
 
+
 class CoordinatesWidgetLinha(QWidget):
     def __init__(self):
         super().__init__()

@@ -3,12 +3,12 @@ from PyQt5.QtGui import QPainter, QPalette, QColor
 from PyQt5 import QtCore
 from models.viewport import Viewport
 from models.window import Window
+from models.point import Point
 
 
 class RightWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(200, 0, Viewport.xmax, Viewport.ymax)
         self.setFixedSize(Viewport.xmax, Viewport.ymax)
         self.setAutoFillBackground(True)
 
@@ -22,6 +22,8 @@ class RightWidget(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        Window.transformSCN()
-        for object in Window.listObjects:
+        painter.drawRoundedRect(5, 5, Viewport.xmax, Viewport.ymax, 3, 3);
+
+        Viewport.transformViewport()
+        for object in Viewport.listObjects:
             object.draw(painter)
