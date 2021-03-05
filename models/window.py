@@ -29,7 +29,6 @@ class Window():
             rotateObject.rotate(Point(wcx, wcy), angle)
             Window.listObjects.append(rotateObject)
 
-
     @staticmethod
     def expanded_boundaries():
         width = Window.points[1][0] - Window.points[3][0]
@@ -42,12 +41,6 @@ class Window():
     @staticmethod
     def boundaries():
         return (Window.points[3], Window.points[1])
-
-    @staticmethod
-    def angle():
-        """ Returns the angle of the 'view up' vector. """
-        window_up = numpy.subtract(Window.points[0], Window.points[3])
-        return numpy.arctan2(1, 0) - numpy.arctan2(window_up[1], window_up[0])
 
     @staticmethod
     def center():
