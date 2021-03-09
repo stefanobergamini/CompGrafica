@@ -15,11 +15,14 @@ class CoordinatesWidgetPonto(QWidget):
 
         self.coordenadaX = QLineEdit()
         self.coordenadaY = QLineEdit()
+        self.colorPoint = QLineEdit()
 
         layout.addWidget(QLabel('Coordenada X:'))
         layout.addWidget(self.coordenadaX)
         layout.addWidget(QLabel('Coordenada Y:'))
         layout.addWidget(self.coordenadaY)
+        layout.addWidget(QLabel('Color:'))
+        layout.addWidget(self.colorPoint)
 
         self.Confirma = QPushButton('Confirmar')
         self.Confirma.setStyleSheet('font-size: 30px')
@@ -37,6 +40,8 @@ class CoordinatesWidgetPonto(QWidget):
             return
         x = int(self.coordenadaX.displayText())
         y = int(self.coordenadaY.displayText())
+        color = int(self.colorPoint.displayText())
+        print(color)
         point = Point(x, y)
         newObject = Object([point], 'Point')
         World.addObject(newObject)

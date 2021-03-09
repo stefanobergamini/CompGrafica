@@ -14,9 +14,12 @@ class CoordinatesWidgetPoligono(QWidget):
         self.layout = QVBoxLayout()
 
         self.coordenadaXY = QLineEdit()
+        self.colorPoligono = QLineEdit()
 
         self.layout.addWidget(QLabel('Todas as coordenada X e Y: x1,y1;x2,y2'))
         self.layout.addWidget(self.coordenadaXY)
+        self.layout.addWidget(QLabel('Color:'))
+        self.layout.addWidget(self.colorPoligono)
 
         self.Confirma = QPushButton('Confirmar')
         self.Confirma.setStyleSheet('font-size: 30px')
