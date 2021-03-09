@@ -19,7 +19,7 @@ class CoordinatesWidgetPoligono(QWidget):
 
         self.layout.addWidget(QLabel('Todas as coordenada X e Y: x1,y1;x2,y2'))
         self.layout.addWidget(self.coordenadaXY)
-        self.layout.addWidget(QLabel('Color:'))
+        self.layout.addWidget(QLabel('Color: r,g,b (between 0 and 255)'))
         self.layout.addWidget(self.colorPoligono)
 
         self.Confirma = QPushButton('Confirmar')
@@ -41,9 +41,12 @@ class CoordinatesWidgetPoligono(QWidget):
             if(stringPonto != ''):
                 x, y = stringPonto.split(',')
                 newpontos.append(Point(int(x), int(y)))
-
-        r, g, b = self.colorPoligono.displayText().strip().split(',')
-        color = QColor(int(r), int(g), int(b))        
+        if (self.colorPoligono.displayText() == ""):
+            r, g, b = 0, 0, 0
+            color = QColor(int(r), int(g), int(b))
+        else:
+            r, g, b = self.colorPoligono.displayText().strip().split(',')
+            color = QColor(int(r), int(g), int(b))
         World.addObject(Object(newpontos, "Wireframe", color))
         self.close()
         self.clearLabels()

@@ -29,7 +29,7 @@ class CoordinatesWidgetLinha(QWidget):
         layout.addWidget(self.coordenadaX2)
         layout.addWidget(QLabel('Coordenada Y2:'))
         layout.addWidget(self.coordenadaY2)
-        layout.addWidget(QLabel('Color:'))
+        layout.addWidget(QLabel('Color: r,g,b (between 0 and 255)'))
         layout.addWidget(self.colorLine)
 
         self.Confirma = QPushButton('Confirmar')
@@ -48,9 +48,12 @@ class CoordinatesWidgetLinha(QWidget):
         if (self.coordenadaX1.displayText() == "" or self.coordenadaY1.displayText() == "" or
                 self.coordenadaX2.displayText() == "" or self.coordenadaY2.displayText() == ""):
             return
-        r, g, b = self.colorLine.displayText().strip().split(',')
-        color = QColor(int(r), int(g), int(b))
-
+        if (self.colorLine.displayText() == ""):
+            r, g, b = 0, 0, 0
+            color = QColor(int(r), int(g), int(b))
+        else:
+            r, g, b = self.colorLine.displayText().strip().split(',')
+            color = QColor(int(r), int(g), int(b))
         x1 = int(self.coordenadaX1.displayText())
         y1 = int(self.coordenadaY1.displayText())
         ponto1 = Point(x1, y1)

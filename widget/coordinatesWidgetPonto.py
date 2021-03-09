@@ -22,7 +22,7 @@ class CoordinatesWidgetPonto(QWidget):
         layout.addWidget(self.coordenadaX)
         layout.addWidget(QLabel('Coordenada Y:'))
         layout.addWidget(self.coordenadaY)
-        layout.addWidget(QLabel('Color:'))
+        layout.addWidget(QLabel('Color: r,g,b (between 0 and 255)'))
         layout.addWidget(self.colorPoint)
 
         self.Confirma = QPushButton('Confirmar')
@@ -41,8 +41,12 @@ class CoordinatesWidgetPonto(QWidget):
             return
         x = int(self.coordenadaX.displayText())
         y = int(self.coordenadaY.displayText())
-        r, g, b = self.colorPoint.displayText().strip().split(',')
-        color = QColor(int(r), int(g), int(b))        
+        if (self.colorPoint.displayText() == ""):
+            r, g, b = 0, 0, 0
+            color = QColor(int(r), int(g), int(b))
+        else:
+            r, g, b = self.colorPoint.displayText().strip().split(',')
+            color = QColor(int(r), int(g), int(b))
         point = Point(x, y)
         newObject = Object([point], 'Point', color)
         World.addObject(newObject)
