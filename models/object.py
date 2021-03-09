@@ -4,8 +4,9 @@ from models.world import World
 
 
 class Object(Object2D):
-    def __init__(self, points, type):
+    def __init__(self, points, type, color):
         self.points = points
+        self.color = color
         self.type = type
         self.label = "#{}: {}".format(World.numberObjects, self.type)
 
@@ -16,6 +17,7 @@ class Object(Object2D):
         self.points = points
 
     def draw(self, painter):
+        painter.setPen(self.color)
         if (len(self.points) == 1):
             painter.drawPoint(self.points[0])
         elif (len(self.points) == 2):
@@ -56,3 +58,11 @@ class Object(Object2D):
     def getCenter(self):
         cx, cy = self.getCenterObject(self.points)
         return Point(cx, cy)
+
+    def normalized(self, centerPoint, angle, factor):
+        coordinates = self.normalizedObjects(self.points, centerPoint, angle, factor)
+        wireframeCoordinates = []
+        for coordinate in coordinates:
+            x, y, _ = coordinate
+            wireframeCoordinates.append(Point(x, y))
+        self.points = wireframeCoordinates

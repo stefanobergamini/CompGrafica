@@ -23,10 +23,9 @@ class Window():
     def normalizedObjects():
         Window.listObjects = []
         wcx, wcy = Window.center()
-        angle = numpy.radians(Window.rotateAngle)
         for object in World.listObjects:
-            rotateObject = Object(object.points, object.type)
-            rotateObject.rotate(Point(wcx, wcy), angle)
+            rotateObject = Object(object.points, object.type, object.color)
+            rotateObject.rotate(Point(wcx, wcy), numpy.radians(Window.rotateAngle))
             Window.listObjects.append(rotateObject)
 
     @staticmethod

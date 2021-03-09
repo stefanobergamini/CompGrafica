@@ -50,3 +50,33 @@ class Object2D:
 
     def getAngleInRadianus(self, angle):
         return angle * numpy.pi/180
+
+    def normalizedObjects(self, points, centerPoint, angle, factor):
+        wcx, wcy = centerPoint
+        factorx, factory = factor
+        objectNormalized = []
+        for point in points:
+
+            pointMatrix = [point.x, point.y, 1]
+
+            operation_matrix = numpy.array([
+                [1, 0, 0],
+                [0, 1, 0],
+                [-wcx, -wcy, 1],
+            ])
+
+            operation_matrix = operation_matrix.dot([
+                [numpy.cos(angle), -numpy.sin(angle), 0],
+                [numpy.sin(angle), numpy.cos(angle), 0],
+                [0, 0, 1]
+            ])
+
+            operation_matrix = operation_matrix.dot([
+                [factorx, 0, 0],
+                [0, factory, 0],
+                [0, 0, 1],
+            ])
+
+            pointNormalized = numpy.dot(pointMatrix, operation_matrix)
+            objectNormalized.append(pointNormalized)
+        return objectNormalized
