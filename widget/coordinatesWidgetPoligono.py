@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel, QCheckBox
 from PyQt5.QtGui import QColor
 from models.world import World
 from models.point import Point
@@ -21,6 +21,10 @@ class CoordinatesWidgetPoligono(QWidget):
         self.layout.addWidget(self.coordenadaXY)
         self.layout.addWidget(QLabel('Color: r,g,b (between 0 and 255)'))
         self.layout.addWidget(self.colorPoligono)
+
+        self.b1 = QCheckBox("Filled Poligon")
+        self.b1.setChecked(False)
+        self.layout.addWidget(self.b1)
 
         self.Confirma = QPushButton('Confirmar')
         self.Confirma.setStyleSheet('font-size: 30px')
@@ -47,6 +51,8 @@ class CoordinatesWidgetPoligono(QWidget):
         else:
             r, g, b = self.colorPoligono.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
+        if self.b1.isChecked() == True:
+            print("checkado")
         World.addObject(Object(newpontos, "Wireframe", color))
         self.close()
         self.clearLabels()

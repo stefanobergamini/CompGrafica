@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QWidget
+from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
@@ -60,6 +60,19 @@ class LeftWidget(QWidget):
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
         self.buttonPolygon.setGeometry(0, 280, 173, 25)
 
+        self.checkBox1 = QCheckBox("Tecnica 1", self)
+        self.checkBox1.setChecked(True)
+        self.checkBox1.stateChanged.connect(lambda: self.chosenTecnic(self.checkBox1))
+        self.checkBox1.setGeometry(0, 305, 86, 25)
+
+        self.checkBox2 = QCheckBox("Tecnica 2", self)
+        self.checkBox1.stateChanged.connect(lambda: self.chosenTecnic(self.checkBox2))
+        self.checkBox2.setGeometry(86, 305, 86, 25)
+
+        self.bg = QButtonGroup()
+        self.bg.addButton(self.checkBox1, 1)
+        self.bg.addButton(self.checkBox2, 2)
+
     def show_new_window_ponto(self):
         if self.coordinatesWidgetPonto is None:
             self.coordinatesWidgetPonto = CoordinatesWidgetPonto()
@@ -98,3 +111,16 @@ class LeftWidget(QWidget):
 
     def zoomOut(self):
         Window.zoom(1.1)
+
+    def chosenTecnic(self, checkBox):
+        if checkBox.text() == "Tecnica 1":
+            if checkBox.isChecked() == True:
+                print(checkBox.text() + " is selected")
+            else:
+                print(checkBox.text() + " is deselected")
+
+        if checkBox.text() == "Tecnica 2":
+            if checkBox.isChecked() == True:
+                print(checkBox.text() + " is selected")
+            else:
+                print(checkBox.text() + " is deselected")
