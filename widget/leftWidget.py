@@ -113,6 +113,7 @@ class LeftWidget(QWidget):
         Window.zoom(1.1)
 
     def chosenTecnic(self, checkBox):
+        #mudar a funcao dps de criada as tecnicas de clipping
         if checkBox.text() == "Tecnica 1":
             if checkBox.isChecked() == True:
                 print(checkBox.text() + " is selected")

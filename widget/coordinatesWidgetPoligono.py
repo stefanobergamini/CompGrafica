@@ -52,8 +52,10 @@ class CoordinatesWidgetPoligono(QWidget):
             r, g, b = self.colorPoligono.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
         if self.b1.isChecked() == True:
-            print("checkado")
-        World.addObject(Object(newpontos, "Wireframe", color))
+            filled = True
+        else:
+            filled = False
+        World.addObject(Object(newpontos, "Wireframe", color, filled))
         self.close()
         self.clearLabels()
 

@@ -23,4 +23,4 @@ class Viewport():
                 xvp = ((point.x - xmin) / (xmax - xmin)) * (Viewport.xmax - Viewport.xmin)
                 yvp = (1 - ((point.y - ymin) / (ymax - ymin))) * (Viewport.ymax - Viewport.ymin)
                 listPoints.append(Point(xvp, yvp))
-            Viewport.listObjects.append(Object(listPoints, object.type, object.color))
+            Viewport.listObjects.append(Object(listPoints, object.type, object.color, object.filled))

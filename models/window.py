@@ -24,7 +24,7 @@ class Window():
         Window.listObjects = []
         wcx, wcy = Window.center()
         for object in World.listObjects:
-            rotateObject = Object(object.points, object.type, object.color)
+            rotateObject = Object(object.points, object.type, object.color, object.filled)
             rotateObject.rotate(Point(wcx, wcy), numpy.radians(Window.rotateAngle))
             Window.listObjects.append(rotateObject)
 
