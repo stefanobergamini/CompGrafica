@@ -4,6 +4,7 @@ from models.point import Point
 from models.world import World
 from PyQt5.QtCore import Qt
 
+
 class Object(Object2D):
     def __init__(self, points, type, color, filled):
         self.points = points
@@ -11,6 +12,7 @@ class Object(Object2D):
         self.filled = filled
         self.type = type
         self.label = "#{}: {}".format(World.numberObjects, self.type)
+        self.clip = False
 
     def setType(self, type):
         self.type = type
@@ -19,21 +21,21 @@ class Object(Object2D):
         self.points = points
 
     def draw(self, painter):
+        if self.clip:
+            return
         path = QPainterPath()
         painter.setPen(self.color)
         if (len(self.points) == 1):
             painter.drawPoint(self.points[0])
         elif (len(self.points) == 2):
             painter.drawLine(self.points[0], self.points[1])
-        else:
-            path.moveTo(self.points[0])
-            for position in range(0, len(self.points)):
-                if(position < (len(self.points))):
-                    path.lineTo(self.points[position])
-                else:
-                    path.lineTo(self.points[0])
-            if self.filled == True:
+        elif (len(self.points) > 2):
+            if self.filled:
                 painter.setBrush(QBrush(self.color, Qt.SolidPattern))
+            path.moveTo(self.points[0])
+            for point in self.points:
+                path.lineTo(point)
+            path.lineTo(self.points[0])
             painter.drawPath(path)
 
     def rotate(self, anchorPoint, angle):

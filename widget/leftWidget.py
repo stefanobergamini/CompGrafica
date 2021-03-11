@@ -60,12 +60,12 @@ class LeftWidget(QWidget):
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
         self.buttonPolygon.setGeometry(0, 280, 173, 25)
 
-        self.checkBox1 = QCheckBox("Tecnica 1", self)
+        self.checkBox1 = QCheckBox("Cohen-Sutherland", self)
         self.checkBox1.setChecked(True)
         self.checkBox1.stateChanged.connect(lambda: self.chosenTecnic(self.checkBox1))
         self.checkBox1.setGeometry(0, 305, 86, 25)
 
-        self.checkBox2 = QCheckBox("Tecnica 2", self)
+        self.checkBox2 = QCheckBox("Liang-Barsky", self)
         self.checkBox1.stateChanged.connect(lambda: self.chosenTecnic(self.checkBox2))
         self.checkBox2.setGeometry(86, 305, 86, 25)
 
@@ -113,15 +113,9 @@ class LeftWidget(QWidget):
         Window.zoom(1.1)
 
     def chosenTecnic(self, checkBox):
-        #mudar a funcao dps de criada as tecnicas de clipping
-        if checkBox.text() == "Tecnica 1":
+        if checkBox.text() == "Cohen-Sutherland":
             if checkBox.isChecked() == True:
-                print(checkBox.text() + " is selected")
-            else:
-                print(checkBox.text() + " is deselected")
-
-        if checkBox.text() == "Tecnica 2":
+                Window.LINECLIPPING = "CohenSutherland"
+        if checkBox.text() == "Liang-Barsky":
             if checkBox.isChecked() == True:
-                print(checkBox.text() + " is selected")
-            else:
-                print(checkBox.text() + " is deselected")
+                Window.LINECLIPPING = "LiangBarsky"
