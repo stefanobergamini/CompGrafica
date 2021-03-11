@@ -66,8 +66,18 @@ class Window():
     @staticmethod
     def move(offSet):
         newPoints = []
+        angle = numpy.radians(-Window.rotateAngle)
+        offSetx, offSety = offSet
+        rotateMatrix = [
+            [numpy.cos(angle), -numpy.sin(angle), 0], 
+            [numpy.sin(angle), numpy.cos(angle), 0], 
+            [0, 0, 1]
+        ]
         for point in Window.points:
-            newPoints.append(tuple(numpy.add(point, offSet)))
+            offSet = numpy.dot([offSetx, offSety, 1], rotateMatrix)
+            xp, yp = point
+            x, y, _ = numpy.add([xp, yp, 1], offSet)
+            newPoints.append((x, y))
         Window.points = newPoints
 
     @staticmethod
@@ -113,12 +123,11 @@ class Window():
         minimum, maximum = Window.boundaries()
         xmin, ymin = minimum
         xmax, ymax = maximum
-        for i, object in enumerate(Window.listObjects):
+        copyList = Window.listObjects.copy()
+        for i, object in enumerate(copyList):
             if len(object.points) == 1:
-                if xmin <= object.points[0].x <= xmax and ymin <= object.points[0].y <= ymax:
-                    Window.listObjects[i] = object
-                else:
-                    object.clip = True
+                if not(xmin <= object.points[0].x <= xmax and ymin <= object.points[0].y <= ymax):
+                    Window.listObjects[i].clip = True
 
     @staticmethod
     def lineClipping():
@@ -140,19 +149,19 @@ class Window():
                     newLine = [Point(x1, y1), Point(x2, y2)]
                     Window.listObjects[i].points = newLine
                 else:
-                    object.clip = True
+                    Window.listObjects[i].clip = True
 
     @staticmethod
     def polygonClipping():
         copyList = Window.listObjects.copy()
-        for position, object in enumerate(copyList):
+        for i, object in enumerate(copyList):
             subject = []
             if len(object.points) > 2:
                 for point in object.points:
                     subject.append([point.x, point.y])
                 newSubject = Window.sutherlandHodgman(subject)
                 if newSubject is None:
-                    object.clip = True
+                    Window.listObjects[i].clip = True
                 else:
                     newPoints = []
                     for newPoint in newSubject:

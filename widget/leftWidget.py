@@ -95,16 +95,16 @@ class LeftWidget(QWidget):
         Window.rotateWindow(10)
 
     def moveUp(self):
-        Window.move([0, 5])
+        Window.move([0, 15])
 
     def moveDown(self):
-        Window.move([0, -5])
+        Window.move([0, -15])
 
     def moveLeft(self):
-        Window.move([-5, 0])
+        Window.move([-15, 0])
 
     def moveRight(self):
-        Window.move([5, 0])
+        Window.move([15, 0])
 
     def zoomIn(self):
         Window.zoom(0.9)
