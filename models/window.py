@@ -2,6 +2,7 @@ import numpy
 from models.world import World
 from models.point import Point
 from models.object import Object
+from models.curve import Curve
 
 
 class Window():
@@ -28,13 +29,21 @@ class Window():
     points.append(points[0])
 
     @staticmethod
+    def copyListObjects(listObjects):
+        newListObject = []
+        for object in listObjects:
+            if(object.type == 'Curve Bezier'):
+                newListObject.append(Curve(object.points, object.color, True))
+            else:
+                newListObject.append(Object(object.points, object.type, object.color, object.filled))
+        return newListObject
+
+    @staticmethod
     def normalizedObjects():
-        Window.listObjects = []
+        Window.listObjects = Window.copyListObjects(World.listObjects)
         wcx, wcy = Window.center()
-        for object in World.listObjects:
-            rotateObject = Object(object.points, object.type, object.color, object.filled)
-            rotateObject.rotate(Point(wcx, wcy), numpy.radians(Window.rotateAngle))
-            Window.listObjects.append(rotateObject)
+        for object in Window.listObjects:
+            object.rotate(Point(wcx, wcy), numpy.radians(Window.rotateAngle))
         Window.pointClipping()
         Window.lineClipping()
         Window.polygonClipping()
@@ -123,16 +132,14 @@ class Window():
         minimum, maximum = Window.boundaries()
         xmin, ymin = minimum
         xmax, ymax = maximum
-        copyList = Window.listObjects.copy()
-        for i, object in enumerate(copyList):
+        for i, object in enumerate(Window.listObjects):
             if len(object.points) == 1:
                 if not(xmin <= object.points[0].x <= xmax and ymin <= object.points[0].y <= ymax):
                     Window.listObjects[i].clip = True
 
     @staticmethod
     def lineClipping():
-        copyList = Window.listObjects.copy()
-        for i, object in enumerate(copyList):
+        for i, object in enumerate(Window.listObjects):
             if len(object.points) == 2:
                 x1 = object.points[0].x
                 y1 = object.points[0].y
@@ -153,8 +160,7 @@ class Window():
 
     @staticmethod
     def polygonClipping():
-        copyList = Window.listObjects.copy()
-        for i, object in enumerate(copyList):
+        for i, object in enumerate(Window.listObjects):
             subject = []
             if len(object.points) > 2:
                 for point in object.points:

@@ -5,6 +5,7 @@ from PyQt5.QtGui import QColor
 from models.world import World
 from models.point import Point
 from models.object import Object
+from models.curve import Curve
 
 
 class CoordinatesWidgetPoligono(QWidget):
@@ -55,7 +56,7 @@ class CoordinatesWidgetPoligono(QWidget):
             filled = True
         else:
             filled = False
-        World.addObject(Object(newpontos, "Wireframe", color, filled))
+        World.addObject(Curve(newpontos, color))
         self.close()
         self.clearLabels()
 

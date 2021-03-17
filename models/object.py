@@ -73,3 +73,11 @@ class Object(Object2D):
             x, y, _ = coordinate
             wireframeCoordinates.append(Point(x, y))
         self.points = wireframeCoordinates
+
+    def coordinatesToPoint(self, points):
+        newPoints = []
+        for point in points:
+            x, y = point
+            newPoints.append(Point(x, y))
+
+        return newPoints
