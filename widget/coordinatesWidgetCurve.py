@@ -8,24 +8,20 @@ from models.object import Object
 from models.curve import Curve
 
 
-class CoordinatesWidgetPoligono(QWidget):
+class CoordinatesWidgetCurve(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Wireframe")
+        self.setWindowTitle("Curve")
         self.setGeometry(300, 300, 200, 100)
         self.layout = QVBoxLayout()
 
         self.coordenadaXY = QLineEdit()
-        self.colorPoligono = QLineEdit()
+        self.colorCurve = QLineEdit()
 
-        self.layout.addWidget(QLabel('Todas as coordenada X e Y: x1,y1;x2,y2'))
+        self.layout.addWidget(QLabel('Todas as coordenada X e Y: x1,y1;x2,y2;x3,y3;x4,y4'))
         self.layout.addWidget(self.coordenadaXY)
         self.layout.addWidget(QLabel('Color: r,g,b (between 0 and 255)'))
-        self.layout.addWidget(self.colorPoligono)
-
-        self.b1 = QCheckBox("Filled Poligon")
-        self.b1.setChecked(False)
-        self.layout.addWidget(self.b1)
+        self.layout.addWidget(self.colorCurve)
 
         self.Confirma = QPushButton('Confirmar')
         self.Confirma.setStyleSheet('font-size: 30px')
@@ -46,20 +42,16 @@ class CoordinatesWidgetPoligono(QWidget):
             if(stringPonto != ''):
                 x, y = stringPonto.split(',')
                 newpontos.append(Point(int(x), int(y)))
-        if (self.colorPoligono.displayText() == ""):
+        if (self.colorCurve.displayText() == ""):
             r, g, b = 0, 0, 0
             color = QColor(int(r), int(g), int(b))
         else:
-            r, g, b = self.colorPoligono.displayText().strip().split(',')
+            r, g, b = self.colorCurve.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
-        if self.b1.isChecked() == True:
-            filled = True
-        else:
-            filled = False
-        World.addObject(Object(newpontos, "Wireframe", color, filled))
+        World.addObject(Curve(newpontos, color))
         self.close()
         self.clearLabels()
 
     def clearLabels(self):
         self.coordenadaXY.clear()
-        self.colorPoligono.clear()
+        self.colorCurve.clear()
