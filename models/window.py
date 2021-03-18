@@ -48,9 +48,7 @@ class Window():
         wcx, wcy = Window.center()
         for object in Window.listObjects:
             object.rotate(Point(wcx, wcy), numpy.radians(Window.rotateAngle))
-        Window.pointClipping()
-        Window.lineClipping()
-        Window.polygonClipping()
+        Window.clip()
 
     @staticmethod
     def expanded_boundaries():
@@ -132,6 +130,13 @@ class Window():
         Window.points = newPoints
 
     @staticmethod
+    def clip():
+        Window.pointClipping()
+        Window.lineClipping()
+        Window.curveClipping()
+        Window.polygonClipping()
+
+    @staticmethod
     def pointClipping():
         minimum, maximum = Window.boundaries()
         xmin, ymin = minimum
@@ -140,6 +145,27 @@ class Window():
             if len(object.points) == 1:
                 if not(xmin <= object.points[0].x <= xmax and ymin <= object.points[0].y <= ymax):
                     Window.listObjects[i].clip = True
+
+
+    @staticmethod
+    def curveClipping():
+        for i, object in enumerate(Window.listObjects):
+            if object.type == "Curve Bezier":
+                newPoints = []
+                for i in range(0, len(object.points) - 1):
+                    point1 = object.points[i]
+                    point2 = object.points[i+1]
+                    line = [(point1.x, point1.y), (point2.x, point2.y)]
+                    if(Window.LINECLIPPING == "CohenSutherland"):
+                        newLine = Window.cohenSutherland(line)
+                    else:
+                        newLine = Window.liangBarsky(line)
+
+                    if(newLine is not None):
+                        [(x1, y1), (x2, y2)] = newLine
+                        newPoints.append(Point(x1, y1))
+                        newPoints.append(Point(x2, y2))
+                object.points = newPoints
 
     @staticmethod
     def lineClipping():
@@ -166,7 +192,7 @@ class Window():
     def polygonClipping():
         for i, object in enumerate(Window.listObjects):
             subject = []
-            if len(object.points) > 2:
+            if len(object.points) > 2 and object.type != 'Curve Bezier':
                 for point in object.points:
                     subject.append([point.x, point.y])
                 newSubject = Window.sutherlandHodgman(subject)

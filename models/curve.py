@@ -46,3 +46,5 @@ class Curve(Object):
             return
         for position in range(0, len(self.points) - 1):
             painter.drawLine(self.points[position], self.points[position+1])
+
+# 0,0;0,500;500,500;500,0
