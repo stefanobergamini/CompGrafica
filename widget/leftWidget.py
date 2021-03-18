@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup
+from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup, QLabel, QLineEdit
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
@@ -18,29 +18,35 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetPonto = None  # No external window yet.
         self.coordinatesWidgetPoligono = None  # No external window yet.
         self.coordinatesWidgetCurve = None  # No external window yet.
+
         self.buttonUp = QPushButton("Up", self)
         self.buttonUp.clicked.connect(self.moveUp)
-        self.buttonUp.setGeometry(43, 30, 86, 25)
+        self.buttonUp.setGeometry(43, 10, 86, 25)
 
         self.buttonLeft = QPushButton("Left", self)
         self.buttonLeft.clicked.connect(self.moveLeft)
-        self.buttonLeft.setGeometry(0, 55, 86, 25)
+        self.buttonLeft.setGeometry(0, 35, 86, 25)
 
         self.buttonRight = QPushButton("Right", self)
         self.buttonRight.clicked.connect(self.moveRight)
-        self.buttonRight.setGeometry(86, 55, 86, 25)
+        self.buttonRight.setGeometry(86, 35, 86, 25)
 
         self.buttonDown = QPushButton("Down", self)
         self.buttonDown.clicked.connect(self.moveDown)
-        self.buttonDown.setGeometry(43, 80, 86, 25)
+        self.buttonDown.setGeometry(43, 60, 86, 25)
 
         self.buttonZoomIn = QPushButton("Zoom In", self)
         self.buttonZoomIn.clicked.connect(self.zoomIn)
-        self.buttonZoomIn.setGeometry(0, 115, 86, 25)
+        self.buttonZoomIn.setGeometry(0, 90, 86, 25)
 
         self.buttonZoomOut = QPushButton("Zoom Out", self)
         self.buttonZoomOut.clicked.connect(self.zoomOut)
-        self.buttonZoomOut.setGeometry(86, 115, 86, 25)
+        self.buttonZoomOut.setGeometry(86, 90, 86, 25)
+
+        self.rotateWinAngLabel = QLabel("Rotation Window Angle:", self)
+        self.rotateWinAngLabel.setGeometry(0, 130, 120, 25)
+        self.rotateWinAng = QLineEdit("10", self)
+        self.rotateWinAng.setGeometry(120, 130, 52, 25)
 
         self.buttonRotateLeft = QPushButton("Rotate Window Left", self)
         self.buttonRotateLeft.clicked.connect(self.rotateLeft)
@@ -100,10 +106,12 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetCurve.show()
 
     def rotateRight(self):
-        Window.rotateWindow(-10)
+        angleWin = int (self.rotateWinAng.displayText())
+        Window.rotateWindow(-angleWin)
 
     def rotateLeft(self):
-        Window.rotateWindow(10)
+        angleWin = int(self.rotateWinAng.displayText())
+        Window.rotateWindow(angleWin)
 
     def moveUp(self):
         Window.move([0, 15])

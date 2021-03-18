@@ -33,9 +33,13 @@ class Window():
         newListObject = []
         for object in listObjects:
             if(object.type == 'Curve Bezier'):
-                newListObject.append(Curve(object.points, object.color, True))
+                newCurve = Curve(object.points, object.color, True)
+                newCurve.clip = object.clip
+                newListObject.append(newCurve)
             else:
-                newListObject.append(Object(object.points, object.type, object.color, object.filled))
+                newObject = Object(object.points, object.type, object.color, object.filled)
+                newObject.clip = object.clip
+                newListObject.append(newObject)
         return newListObject
 
     @staticmethod
