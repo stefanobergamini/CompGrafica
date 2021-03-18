@@ -48,13 +48,10 @@ class LeftWidget(QWidget):
         self.rotateWinAng = QLineEdit("10", self)
         self.rotateWinAng.setGeometry(120, 130, 52, 25)
 
-        self.buttonRotateLeft = QPushButton("Rotate Window Left", self)
-        self.buttonRotateLeft.clicked.connect(self.rotateLeft)
+        self.buttonRotateLeft = QPushButton("Rotate Window", self)
+        self.buttonRotateLeft.clicked.connect(self.rotateWindow)
         self.buttonRotateLeft.setGeometry(0, 155, 173, 25)
 
-        self.buttonRotateRight = QPushButton("Rotate Window Right", self)
-        self.buttonRotateRight.clicked.connect(self.rotateRight)
-        self.buttonRotateRight.setGeometry(0, 180, 173, 25)
 
         self.buttonPoint = QPushButton("Insert Point", self)
         self.buttonPoint.clicked.connect(self.show_new_window_ponto)
@@ -105,12 +102,8 @@ class LeftWidget(QWidget):
             self.coordinatesWidgetCurve = CoordinatesWidgetCurve()
         self.coordinatesWidgetCurve.show()
 
-    def rotateRight(self):
+    def rotateWindow(self):
         angleWin = int (self.rotateWinAng.displayText())
-        Window.rotateWindow(-angleWin)
-
-    def rotateLeft(self):
-        angleWin = int(self.rotateWinAng.displayText())
         Window.rotateWindow(angleWin)
 
     def moveUp(self):
