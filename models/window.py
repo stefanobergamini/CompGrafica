@@ -3,6 +3,7 @@ from models.world import World
 from models.point import Point
 from models.object import Object
 from models.curve import Curve
+from models.spline import Spline
 
 
 class Window():
@@ -34,6 +35,10 @@ class Window():
         for object in listObjects:
             if(object.type == 'Curve Bezier'):
                 newCurve = Curve(object.points, object.color, True)
+                newCurve.clip = object.clip
+                newListObject.append(newCurve)
+            elif(object.type == 'Curve Spline'):
+                newCurve = Spline(object.points, object.color, True)
                 newCurve.clip = object.clip
                 newListObject.append(newCurve)
             else:
@@ -146,11 +151,10 @@ class Window():
                 if not(xmin <= object.points[0].x <= xmax and ymin <= object.points[0].y <= ymax):
                     Window.listObjects[i].clip = True
 
-
     @staticmethod
     def curveClipping():
         for i, object in enumerate(Window.listObjects):
-            if object.type == "Curve Bezier":
+            if object.type == "Curve Bezier" or object.type == "Curve Spline":
                 newPoints = []
                 for i in range(0, len(object.points) - 1):
                     point1 = object.points[i]
@@ -192,7 +196,7 @@ class Window():
     def polygonClipping():
         for i, object in enumerate(Window.listObjects):
             subject = []
-            if len(object.points) > 2 and object.type != 'Curve Bezier':
+            if len(object.points) > 2 and object.type != 'Curve Bezier' and object.type != 'Curve Spline':
                 for point in object.points:
                     subject.append([point.x, point.y])
                 newSubject = Window.sutherlandHodgman(subject)

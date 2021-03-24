@@ -6,6 +6,7 @@ from models.world import World
 from models.point import Point
 from models.object import Object
 from models.curve import Curve
+from models.spline import Spline
 
 
 class CoordinatesWidgetCurve(QWidget):
@@ -48,7 +49,7 @@ class CoordinatesWidgetCurve(QWidget):
         else:
             r, g, b = self.colorCurve.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
-        World.addObject(Curve(newpontos, color))
+        World.addObject(Spline(newpontos, color))
         self.close()
         self.clearLabels()
 
