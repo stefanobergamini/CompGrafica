@@ -3,6 +3,7 @@ from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
 from widget.coordinatesWidgetCurve import CoordinatesWidgetCurve
+from widget.coordinatesWidgetSpline import CoordinatesWidgetSpline
 
 from models.window import Window
 
@@ -18,6 +19,7 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetPonto = None  # No external window yet.
         self.coordinatesWidgetPoligono = None  # No external window yet.
         self.coordinatesWidgetCurve = None  # No external window yet.
+        self.coordinatesWidgetSpline = None  # No external window yet.
 
         self.buttonUp = QPushButton("Up", self)
         self.buttonUp.clicked.connect(self.moveUp)
@@ -52,22 +54,25 @@ class LeftWidget(QWidget):
         self.buttonRotateLeft.clicked.connect(self.rotateWindow)
         self.buttonRotateLeft.setGeometry(0, 155, 173, 25)
 
-
         self.buttonPoint = QPushButton("Insert Point", self)
         self.buttonPoint.clicked.connect(self.show_new_window_ponto)
-        self.buttonPoint.setGeometry(0, 220, 173, 25)
+        self.buttonPoint.setGeometry(0, 195, 173, 25)
 
         self.buttonLine = QPushButton("Insert Line", self)
         self.buttonLine.clicked.connect(self.show_new_window_linha)
-        self.buttonLine.setGeometry(0, 245, 173, 25)
+        self.buttonLine.setGeometry(0, 220, 173, 25)
 
         self.buttonPolygon = QPushButton("Insert Poligon", self)
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
-        self.buttonPolygon.setGeometry(0, 270, 173, 25)
+        self.buttonPolygon.setGeometry(0, 245, 173, 25)
 
         self.buttonCurve = QPushButton("Insert Curve", self)
         self.buttonCurve.clicked.connect(self.show_new_window_curve)
-        self.buttonCurve.setGeometry(0, 295, 173, 25)
+        self.buttonCurve.setGeometry(0, 270, 173, 25)
+
+        self.buttonSpline = QPushButton("Insert Spline", self)
+        self.buttonSpline.clicked.connect(self.show_new_window_spline)
+        self.buttonSpline.setGeometry(0, 295, 173, 25)
 
         self.checkBox1 = QCheckBox("Cohen-Sutherland", self)
         self.checkBox1.setChecked(True)
@@ -101,6 +106,11 @@ class LeftWidget(QWidget):
         if self.coordinatesWidgetCurve is None:
             self.coordinatesWidgetCurve = CoordinatesWidgetCurve()
         self.coordinatesWidgetCurve.show()
+
+    def show_new_window_spline(self):
+        if self.coordinatesWidgetSpline is None:
+            self.coordinatesWidgetSpline = CoordinatesWidgetSpline()
+        self.coordinatesWidgetSpline.show()
 
     def rotateWindow(self):
         angleWin = int (self.rotateWinAng.displayText())
