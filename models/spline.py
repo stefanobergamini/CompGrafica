@@ -40,7 +40,6 @@ class Spline(Object):
             deltas[1] += deltas[2]
             deltas[2] += deltas[3]
             points.append(tuple(deltas[0]))
-
         return self.coordinatesToPoint(points)
 
     def makeCoordinates(self, points):
