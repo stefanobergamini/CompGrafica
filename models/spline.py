@@ -1,19 +1,15 @@
-from models.object import Object
 import numpy
+from models.point import Point
 
 
-class Spline(Object):
+class Spline():
     """ A Spline curve with arbitrary amount of control points. """
 
-    def __init__(self, points, color=None, copy=False):
-        curve = []
-        if(copy):
-            curve = points
-        else:
-            for i in range(len(points) - 3):
-                # build a curve for every four control points
-                curve += self._generate_curve(points[i:i+4])
-        super().__init__(points=curve, type='Curve Spline', color=color, filled=False)
+    def __init__(self, points):
+        self.points = []
+        for i in range(len(points) - 3):
+            # build a curve for every four control points
+            self.points += self._generate_curve(points[i:i+4])
 
     def _generate_curve(self, points):
         points = self.makeCoordinates(points)
@@ -48,8 +44,10 @@ class Spline(Object):
             coordinates.append([points[i].x, points[i].y])
         return coordinates
 
-    def draw(self, painter):
-        if self.clip:
-            return
-        for position in range(0, len(self.points) - 1):
-            painter.drawLine(self.points[position], self.points[position+1])
+    def coordinatesToPoint(self, points):
+        newPoints = []
+        for point in points:
+            x, y = point
+            newPoints.append(Point(x, y))
+
+        return newPoints

@@ -1,3 +1,6 @@
+from models.point import Point
+
+
 class World:
     listObjects = []
     selectedObject = None
@@ -22,3 +25,11 @@ class World:
     @staticmethod
     def clearSelectObject():
         World.selectedObject = None
+
+    @staticmethod
+    def facesToPoints(faces):
+        points = []
+        for face in faces:
+            for point in face:
+                points.append(Point(point[0], point[1]))
+        return points

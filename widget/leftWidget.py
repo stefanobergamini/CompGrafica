@@ -6,6 +6,8 @@ from widget.coordinatesWidgetCurve import CoordinatesWidgetCurve
 from widget.coordinatesWidgetSpline import CoordinatesWidgetSpline
 
 from models.window import Window
+from models.world import World
+from models.object import Object
 
 
 class LeftWidget(QWidget):
@@ -121,7 +123,7 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetSpline.show()
 
     def rotateWindow(self):
-        angleWin = int (self.rotateWinAng.displayText())
+        angleWin = int(self.rotateWinAng.displayText())
         Window.rotateWindow(angleWin)
 
     def moveUp(self):
@@ -144,17 +146,29 @@ class LeftWidget(QWidget):
 
     def chosenTecnic(self, checkBox):
         if checkBox.text() == "Cohen-Sutherland":
-            if checkBox.isChecked() == True:
+            if checkBox.isChecked():
                 Window.LINECLIPPING = "CohenSutherland"
         if checkBox.text() == "Liang-Barsky":
-            if checkBox.isChecked() == True:
+            if checkBox.isChecked():
                 Window.LINECLIPPING = "LiangBarsky"
 
     def importFuncion(self):
-        (document,filter) = QFileDialog.getOpenFileName(self, 'Open file', 'c:\\', "(*.obj)")
+        (document, filter) = QFileDialog.getOpenFileName(self, 'Open file', './object', "(*.obj)")
+        nameObject = document.split('/')[-1].replace('.obj', '')
         if document == "":
             return
         with open(document) as file:
             data = file.read()
-        #do something with data
-
+            file_lines = [line.split(" ") for line in data.split("\n")]
+            vertices = {}
+            faces = []
+            for number, line in enumerate(file_lines):
+                if line[0] == "v":
+                    vertices[number + 1] = (int(line[1]), int(line[2]))
+                if line[0] == "f":
+                    face = []
+                    for index in line[1:]:
+                        face.append(vertices[int(index)])
+                    faces.append(face)
+            points = World.facesToPoints(faces)
+            World.addObject(Object(points, nameObject))

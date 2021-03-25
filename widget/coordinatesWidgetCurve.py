@@ -5,6 +5,7 @@ from PyQt5.QtGui import QColor
 from models.world import World
 from models.point import Point
 from models.curve import Curve
+from models.object import Object
 
 
 class CoordinatesWidgetCurve(QWidget):
@@ -47,7 +48,8 @@ class CoordinatesWidgetCurve(QWidget):
         else:
             r, g, b = self.colorCurve.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
-        World.addObject(Curve(newpontos, color))
+        curve = Curve(newpontos)
+        World.addObject(Object(curve.points, 'Curve Bezier', color))
         self.close()
         self.clearLabels()
 

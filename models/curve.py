@@ -1,17 +1,12 @@
-from models.object import Object
 import numpy
+from models.point import Point
 
 
-class Curve(Object):
+class Curve():
     """ A Bezier curve with four control points. """
-
-    def __init__(self, points, color=None, copy=False):
-        if(copy):
-            curve = points
-        else:
-            curve = self._generate_curve(points)
-            curve.append(points[-1])
-        super().__init__(points=curve, type='Curve Bezier', color=color, filled=False)
+    def __init__(self, points):
+        self.points = self._generate_curve(points)
+        self.points.append(points[-1])
 
     def _generate_curve(self, points):
         def f(t, i):
@@ -41,11 +36,13 @@ class Curve(Object):
             coordinates.append([x_points[i], y_points[i]])
         return coordinates
 
-    def draw(self, painter):
-        if self.clip:
-            return
-        for position in range(0, len(self.points) - 1):
-            painter.drawLine(self.points[position], self.points[position+1])
+    def coordinatesToPoint(self, points):
+        newPoints = []
+        for point in points:
+            x, y = point
+            newPoints.append(Point(x, y))
+
+        return newPoints
 
 # 0,0;0,500;500,500;500,0
 # 150,150;150,250;250,300;300,250;300,150;200,100;150,150;150,250;250,300

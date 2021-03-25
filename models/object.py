@@ -1,4 +1,4 @@
-from PyQt5.QtGui import QBrush, QPainterPath
+from PyQt5.QtGui import QBrush, QPainterPath, QColor
 from models.object2D import Object2D
 from models.point import Point
 from models.world import World
@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt
 
 
 class Object(Object2D):
-    def __init__(self, points, type, color, filled):
+    def __init__(self, points, type, color = QColor(0, 0, 0), filled=False):
         self.points = points
         self.color = color
         self.filled = filled
@@ -25,6 +25,12 @@ class Object(Object2D):
             return
         path = QPainterPath()
         painter.setPen(self.color)
+
+        if (self.type == 'Curve Bezier' or self.type == 'Curve Spline'):
+            for position in range(0, len(self.points) - 1):
+                painter.drawLine(self.points[position], self.points[position+1])
+            return
+
         if (len(self.points) == 1):
             painter.drawPoint(self.points[0])
         elif (len(self.points) == 2):

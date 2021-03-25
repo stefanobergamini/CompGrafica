@@ -33,18 +33,9 @@ class Window():
     def copyListObjects(listObjects):
         newListObject = []
         for object in listObjects:
-            if(object.type == 'Curve Bezier'):
-                newCurve = Curve(object.points, object.color, True)
-                newCurve.clip = object.clip
-                newListObject.append(newCurve)
-            elif(object.type == 'Curve Spline'):
-                newCurve = Spline(object.points, object.color, True)
-                newCurve.clip = object.clip
-                newListObject.append(newCurve)
-            else:
-                newObject = Object(object.points, object.type, object.color, object.filled)
-                newObject.clip = object.clip
-                newListObject.append(newObject)
+            newObject = Object(object.points, object.type, object.color, object.filled)
+            newObject.clip = object.clip
+            newListObject.append(newObject)
         return newListObject
 
     @staticmethod

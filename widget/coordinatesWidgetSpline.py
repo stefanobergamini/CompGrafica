@@ -1,12 +1,9 @@
-import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel, QCheckBox
+from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 from PyQt5.QtGui import QColor
 from models.world import World
 from models.point import Point
-from models.object import Object
-from models.curve import Curve
 from models.spline import Spline
+from models.object import Object
 
 
 class CoordinatesWidgetSpline(QWidget):
@@ -49,7 +46,9 @@ class CoordinatesWidgetSpline(QWidget):
         else:
             r, g, b = self.colorSpline.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
-        World.addObject(Spline(newpontos, color))
+    
+        spline = Spline(newpontos)
+        World.addObject(Object(spline.points, 'Curve Spline', color))
         self.close()
         self.clearLabels()
 
