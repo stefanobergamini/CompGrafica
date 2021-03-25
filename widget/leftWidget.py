@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup, QLabel, QLineEdit
+from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup, QLabel, QLineEdit, QFileDialog
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
@@ -23,65 +23,73 @@ class LeftWidget(QWidget):
 
         self.buttonUp = QPushButton("Up", self)
         self.buttonUp.clicked.connect(self.moveUp)
-        self.buttonUp.setGeometry(43, 10, 86, 25)
+        self.buttonUp.setGeometry(43, 0, 86, 25)
 
         self.buttonLeft = QPushButton("Left", self)
         self.buttonLeft.clicked.connect(self.moveLeft)
-        self.buttonLeft.setGeometry(0, 35, 86, 25)
+        self.buttonLeft.setGeometry(0, 25, 86, 25)
 
         self.buttonRight = QPushButton("Right", self)
         self.buttonRight.clicked.connect(self.moveRight)
-        self.buttonRight.setGeometry(86, 35, 86, 25)
+        self.buttonRight.setGeometry(86, 25, 86, 25)
 
         self.buttonDown = QPushButton("Down", self)
         self.buttonDown.clicked.connect(self.moveDown)
-        self.buttonDown.setGeometry(43, 60, 86, 25)
+        self.buttonDown.setGeometry(43, 50, 86, 25)
 
         self.buttonZoomIn = QPushButton("Zoom In", self)
         self.buttonZoomIn.clicked.connect(self.zoomIn)
-        self.buttonZoomIn.setGeometry(0, 90, 86, 25)
+        self.buttonZoomIn.setGeometry(0, 75, 86, 25)
 
         self.buttonZoomOut = QPushButton("Zoom Out", self)
         self.buttonZoomOut.clicked.connect(self.zoomOut)
-        self.buttonZoomOut.setGeometry(86, 90, 86, 25)
+        self.buttonZoomOut.setGeometry(86, 75, 86, 25)
 
         self.rotateWinAngLabel = QLabel("Rotation Window Angle:", self)
-        self.rotateWinAngLabel.setGeometry(0, 130, 120, 25)
+        self.rotateWinAngLabel.setGeometry(0, 100, 120, 25)
         self.rotateWinAng = QLineEdit("10", self)
-        self.rotateWinAng.setGeometry(120, 130, 52, 25)
+        self.rotateWinAng.setGeometry(120, 100, 52, 25)
 
         self.buttonRotateLeft = QPushButton("Rotate Window", self)
         self.buttonRotateLeft.clicked.connect(self.rotateWindow)
-        self.buttonRotateLeft.setGeometry(0, 155, 173, 25)
+        self.buttonRotateLeft.setGeometry(0, 125, 173, 25)
 
         self.buttonPoint = QPushButton("Insert Point", self)
         self.buttonPoint.clicked.connect(self.show_new_window_ponto)
-        self.buttonPoint.setGeometry(0, 195, 173, 25)
+        self.buttonPoint.setGeometry(0, 160, 173, 25)
 
         self.buttonLine = QPushButton("Insert Line", self)
         self.buttonLine.clicked.connect(self.show_new_window_linha)
-        self.buttonLine.setGeometry(0, 220, 173, 25)
+        self.buttonLine.setGeometry(0, 185, 173, 25)
 
         self.buttonPolygon = QPushButton("Insert Poligon", self)
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
-        self.buttonPolygon.setGeometry(0, 245, 173, 25)
+        self.buttonPolygon.setGeometry(0, 210, 173, 25)
 
         self.buttonCurve = QPushButton("Insert Curve", self)
         self.buttonCurve.clicked.connect(self.show_new_window_curve)
-        self.buttonCurve.setGeometry(0, 270, 173, 25)
+        self.buttonCurve.setGeometry(0, 235, 173, 25)
 
         self.buttonSpline = QPushButton("Insert Spline", self)
         self.buttonSpline.clicked.connect(self.show_new_window_spline)
-        self.buttonSpline.setGeometry(0, 295, 173, 25)
+        self.buttonSpline.setGeometry(0, 260, 173, 25)
 
         self.checkBox1 = QCheckBox("Cohen-Sutherland", self)
         self.checkBox1.setChecked(True)
         self.checkBox1.stateChanged.connect(lambda: self.chosenTecnic(self.checkBox1))
-        self.checkBox1.setGeometry(0, 320, 86, 25)
+        self.checkBox1.setGeometry(0, 285, 86, 25)
 
         self.checkBox2 = QCheckBox("Liang-Barsky", self)
         self.checkBox1.stateChanged.connect(lambda: self.chosenTecnic(self.checkBox2))
-        self.checkBox2.setGeometry(86, 320, 86, 25)
+        self.checkBox2.setGeometry(86, 285, 86, 25)
+
+        self.buttonImport = QPushButton("Import", self)
+        self.buttonImport.clicked.connect(self.importFuncion)
+        self.buttonImport.setGeometry(0, 315, 86, 25)
+
+        self.buttonExport = QPushButton("Export", self)
+        self.buttonExport.clicked.connect(self.zoomOut)
+        self.buttonExport.setGeometry(86, 315, 86, 25)
 
         self.bg = QButtonGroup()
         self.bg.addButton(self.checkBox1, 1)
@@ -141,3 +149,12 @@ class LeftWidget(QWidget):
         if checkBox.text() == "Liang-Barsky":
             if checkBox.isChecked() == True:
                 Window.LINECLIPPING = "LiangBarsky"
+
+    def importFuncion(self):
+        (document,filter) = QFileDialog.getOpenFileName(self, 'Open file', 'c:\\', "(*.obj)")
+        if document == "":
+            return
+        with open(document) as file:
+            data = file.read()
+        #do something with data
+
