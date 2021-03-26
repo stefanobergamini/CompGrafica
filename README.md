@@ -12,6 +12,8 @@ Para realizar rotação é sempre necessário indicar o valor desejado do ângul
 
 Para transladar e escalonar o objeto basta inserir os valores nas suas respectivas entradas.
 
+Para importar objetos basta clicar no botao "import" e selecionar o .obj desejado. Para exportar basta clicar no objeto na lista que se deseja exportar, clicar no botão "export" e salvar o documento no local desejado com o nome desejado.
+
 ## Contribuintes
 Este trabalho é realizado pelos alunos:
 
