@@ -27,9 +27,8 @@ class World:
         World.selectedObject = None
 
     @staticmethod
-    def facesToPoints(faces):
+    def faceToPoints(face):
         points = []
-        for face in faces:
-            for point in face:
-                points.append(Point(point[0], point[1]))
+        for point in face:
+            points.append(Point(point[0], point[1]))
         return points
