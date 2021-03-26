@@ -1,3 +1,4 @@
+import os
 from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup, QLabel, QLineEdit, QFileDialog
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
@@ -86,11 +87,11 @@ class LeftWidget(QWidget):
         self.checkBox2.setGeometry(86, 285, 86, 25)
 
         self.buttonImport = QPushButton("Import", self)
-        self.buttonImport.clicked.connect(self.importFuncion)
+        self.buttonImport.clicked.connect(self.importObject)
         self.buttonImport.setGeometry(0, 315, 86, 25)
 
         self.buttonExport = QPushButton("Export", self)
-        self.buttonExport.clicked.connect(self.zoomOut)
+        self.buttonExport.clicked.connect(self.exportObject)
         self.buttonExport.setGeometry(86, 315, 86, 25)
 
         self.bg = QButtonGroup()
@@ -152,7 +153,7 @@ class LeftWidget(QWidget):
             if checkBox.isChecked():
                 Window.LINECLIPPING = "LiangBarsky"
 
-    def importFuncion(self):
+    def importObject(self):
         (document, filter) = QFileDialog.getOpenFileName(self, 'Open file', './object', "(*.obj)")
         nameObject = document.split('/')[-1].replace('.obj', '')
         if document == "":
@@ -172,3 +173,17 @@ class LeftWidget(QWidget):
                     faces.append(face)
             points = World.facesToPoints(faces)
             World.addObject(Object(points, nameObject))
+
+    def exportObject(self):
+        if World.selectedObject is not None:
+            (document, filter) = QFileDialog.getSaveFileName(self, 'Save File', './object', "(*.obj)")
+            file = open(document, 'w')
+            points = World.selectedObject.points
+            text = ''
+            faces = 'f'
+            for (position, point) in enumerate(points):
+                text += 'v ' + str(point.x) + ' ' + str(point.y) + ' 0\n'
+                faces += ' ' + str(position + 1)
+            text += faces + '\n'
+            file.write(text)
+            file.close()

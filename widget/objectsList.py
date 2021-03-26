@@ -19,6 +19,7 @@ class ObjectsList(QWidget):
         self.timer.timeout.connect(self.renderObjectList)
         self.timer.start(1000 / 60)
 
+        self.listWidget.itemClicked.connect(self.selectObject)
         self.listWidget.itemDoubleClicked.connect(self.launchTransformationWidget)
         vbox.addWidget(QLabel('Objects:'))
         vbox.addWidget(self.listWidget)
@@ -31,6 +32,9 @@ class ObjectsList(QWidget):
             listWidgetItem = QListWidgetItem(object.label)
             self.listWidget.addItem(listWidgetItem)
         self.objectListRendered = World.listObjects.copy()
+
+    def selectObject(self, item):
+        World.selectObject(item.text())
 
     def launchTransformationWidget(self, item):
         World.selectObject(item.text())
