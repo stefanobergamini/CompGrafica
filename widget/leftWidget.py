@@ -177,6 +177,8 @@ class LeftWidget(QWidget):
     def exportObject(self):
         if World.selectedObject is not None:
             (document, filter) = QFileDialog.getSaveFileName(self, 'Save File', './object', "(*.obj)")
+            if document == "":
+                return
             file = open(document, 'w')
             points = World.selectedObject.points
             text = ''
