@@ -68,7 +68,8 @@ class Window():
 
     @staticmethod
     def rotateWindow(angle):
-        Window.rotateAngle += angle
+        if(Window.rotateAngle + angle <= 90 and Window.rotateAngle + angle >= -90):
+            Window.rotateAngle += angle
 
     @staticmethod
     def move(offSet):
