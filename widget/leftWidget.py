@@ -57,25 +57,28 @@ class LeftWidget(QWidget):
         self.buttonRotateLeft.clicked.connect(self.rotateWindow)
         self.buttonRotateLeft.setGeometry(0, 125, 173, 25)
 
-        self.buttonPoint = QPushButton("Insert Point", self)
+        self.insertLabel = QLabel("Insert:", self)
+        self.insertLabel.setGeometry(0, 150, 120, 25)
+
+        self.buttonPoint = QPushButton("Point", self)
         self.buttonPoint.clicked.connect(self.show_new_window_ponto)
-        self.buttonPoint.setGeometry(0, 160, 173, 25)
+        self.buttonPoint.setGeometry(0, 175, 58, 25)
 
-        self.buttonLine = QPushButton("Insert Line", self)
+        self.buttonLine = QPushButton("Line", self)
         self.buttonLine.clicked.connect(self.show_new_window_linha)
-        self.buttonLine.setGeometry(0, 185, 173, 25)
+        self.buttonLine.setGeometry(57, 175, 59, 25)
 
-        self.buttonPolygon = QPushButton("Insert Poligon", self)
+        self.buttonPolygon = QPushButton("Poligon", self)
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
-        self.buttonPolygon.setGeometry(0, 210, 173, 25)
+        self.buttonPolygon.setGeometry(115, 175, 57, 25)
 
-        self.buttonCurve = QPushButton("Insert Curve", self)
+        self.buttonCurve = QPushButton("Curve", self)
         self.buttonCurve.clicked.connect(self.show_new_window_curve)
-        self.buttonCurve.setGeometry(0, 235, 173, 25)
+        self.buttonCurve.setGeometry(86, 200, 86, 25)
 
-        self.buttonSpline = QPushButton("Insert Spline", self)
+        self.buttonSpline = QPushButton("Spline", self)
         self.buttonSpline.clicked.connect(self.show_new_window_spline)
-        self.buttonSpline.setGeometry(0, 260, 173, 25)
+        self.buttonSpline.setGeometry(0, 200, 86, 25)
 
         self.checkBox1 = QCheckBox("Cohen-Sutherland", self)
         self.checkBox1.setChecked(True)
