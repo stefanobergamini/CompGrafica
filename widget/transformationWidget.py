@@ -1,7 +1,6 @@
 import numpy
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QGridLayout, QLineEdit, QLabel
 from models.world import World
-from models.point import Point
 
 
 class TransformationWidget(QWidget):
@@ -37,7 +36,6 @@ class TransformationWidget(QWidget):
         self.ClearLabels.clicked.connect(self.clearLabelsRotation)
 
         # END OF THE ROTATION PART START OF THE TRANSLATION ----------------
-
         self.pointX = QLineEdit()
         self.labelPointX = QLabel('Translate X:')
 
@@ -48,12 +46,11 @@ class TransformationWidget(QWidget):
         self.Translation.setStyleSheet('font-size: 18px')
         self.Translation.clicked.connect(self.translationAroundPoint)
 
-        self.ClearLabelsTranslation = QPushButton('Clear Translation Labels')
-        self.ClearLabelsTranslation.setStyleSheet('font-size: 18px')
-        self.ClearLabelsTranslation.clicked.connect(self.clearLabelsTranslation)
+        self.ClearLabelsTranslationButton = QPushButton('Clear Translation Labels')
+        self.ClearLabelsTranslationButton.setStyleSheet('font-size: 18px')
+        self.ClearLabelsTranslationButton.clicked.connect(self.clearLabelsTranslation)
 
         # END OF THE TRANSLATION PART START OF THE SCALE -------------------
-
         self.scaleX = QLineEdit()
         self.labelScaleX = QLabel('Scale X:')
 
@@ -69,7 +66,6 @@ class TransformationWidget(QWidget):
         self.ClearLablesScale.clicked.connect(self.clearLabelsScale)
 
         # END OF CREATIONS OF WIDGETS START OF LAYOUT ADDING
-
         layout.addWidget(self.labelCoordX, 0, 0)
         layout.addWidget(self.coordenadaX, 1, 0)
         layout.addWidget(self.labelCoordY, 2, 0)
@@ -82,17 +78,15 @@ class TransformationWidget(QWidget):
         layout.addWidget(self.ClearLabels, 9, 0)
 
         # END OF ADDWIDGET FOR ROTATION START OF TRANSLATION
-
         layout.addWidget(self.labelPointX, 0, 1)
         layout.addWidget(self.pointX, 1, 1)
         layout.addWidget(self.labelPointY, 2, 1)
         layout.addWidget(self.pointY, 3, 1)
         layout.addWidget(self.Translation, 4, 1)
-        layout.addWidget(self.ClearLabelsTranslation, 5, 1)
+        layout.addWidget(self.ClearLabelsTranslationButton, 5, 1)
 
 
         # END OF ADDWIDGET FOR TRANSLATION START OF SCALE
-
         layout.addWidget(self.labelScaleX, 0, 2)
         layout.addWidget(self.scaleX, 1, 2)
         layout.addWidget(self.labelScaleY, 2, 2)
@@ -107,25 +101,25 @@ class TransformationWidget(QWidget):
                 return
             x = int(self.coordenadaX.displayText())
             y = int(self.coordenadaY.displayText())
-            receivedAngle = int(self.angle.displayText())
-            anchorPoint = Point(x, y)
-            World.selectedObject.rotate(anchorPoint, numpy.radians(receivedAngle))
+            angle = int(self.angle.displayText())
+            anchorPoint = [x, y]
+            World.selectedObject.rotate(angle, anchorPoint)
 
     def rotateAroundCenter(self):
         if (World.selectedObject is not None):
             if (self.angle.displayText() == ""):
                 return
-            receivedAngle = numpy.int(self.angle.displayText())
+            angle = numpy.int(self.angle.displayText())
             center = World.selectedObject.getCenter()
-            World.selectedObject.rotate(center, numpy.radians(receivedAngle))
+            World.selectedObject.rotate(angle, center)
 
     def rotateAroundOrigin(self):
         if (World.selectedObject is not None):
             if (self.angle.displayText() == ""):
                 return
-            receivedAngle = int(self.angle.displayText())
-            origin = Point(0, 0)
-            World.selectedObject.rotate(origin, numpy.radians(receivedAngle))
+            angle = int(self.angle.displayText())
+            origin = [0, 0]
+            World.selectedObject.rotate(angle, origin)
 
     def translationAroundPoint(self):
         if (World.selectedObject is not None):
@@ -133,7 +127,7 @@ class TransformationWidget(QWidget):
                 return
             x = int(self.pointX.displayText())
             y = int(self.pointY.displayText())
-            point = Point(x, y)
+            point = [x, y]
             World.selectedObject.translation(point)
 
     def scaling(self):

@@ -1,12 +1,12 @@
+import numpy
 from PyQt5.QtGui import QBrush, QPainterPath, QColor
-from models.object2D import Object2D
-from models.point import Point
 from models.world import World
 from PyQt5.QtCore import Qt
+from operations import transform
 
 
-class Object(Object2D):
-    def __init__(self, points, type, color = QColor(0, 0, 0), filled=False):
+class Object():
+    def __init__(self, points, type, color=QColor(0, 0, 0), filled=False):
         self.points = points
         self.color = color
         self.filled = filled
@@ -28,62 +28,40 @@ class Object(Object2D):
 
         if (self.type == 'Curve Bezier' or self.type == 'Curve Spline'):
             for position in range(0, len(self.points) - 1):
-                painter.drawLine(self.points[position], self.points[position+1])
+                x1, y1 = self.points[position]
+                x2, y2 = self.points[position+1]
+                painter.drawLine(x1, y1, x2, y2)
             return
 
         if (len(self.points) == 1):
-            painter.drawPoint(self.points[0])
+            x, y = self.points[0]
+            painter.drawPoint(x, y)
         elif (len(self.points) == 2):
-            painter.drawLine(self.points[0], self.points[1])
+            x1, y1 = self.points[0]
+            x2, y2 = self.points[1]
+            painter.drawLine(x1, y1, x2, y2)
         elif (len(self.points) > 2):
             if self.filled:
                 painter.setBrush(QBrush(self.color, Qt.SolidPattern))
-            path.moveTo(self.points[0])
+            xi, yi = self.points[0]
+            path.moveTo(xi, yi)
             for point in self.points:
-                path.lineTo(point)
-            path.lineTo(self.points[0])
+                x, y = point
+                path.lineTo(x, y)
+            path.lineTo(xi, yi)
             painter.drawPath(path)
 
-    def rotate(self, anchorPoint, angle):
-        coordinates = self.rotateObject(self.points, anchorPoint, angle)
-        wireframeRotate = []
-        for coordinate in coordinates:
-            x, y, _ = coordinate
-            wireframeRotate.append(Point(x, y))
-        self.points = wireframeRotate
+    def rotate(self, angle, anchorPoint):
+        transform.rotate_shape(self, angle, anchorPoint)
 
     def translation(self, anchorPoint):
-        coordinates = self.translationObject(self.points, anchorPoint)
-        wireframeTranslation = []
-        for coordinate in coordinates:
-            x, y, _ = coordinate
-            wireframeTranslation.append(Point(x, y))
-        self.points = wireframeTranslation
+        x, y = anchorPoint
+        transform.translate_shape(self, x, y)
 
     def scale(self, scaleX, scaleY):
-        coordinates = self.scaleObject(self.points, scaleX, scaleY)
-        wireframeScale = []
-        for coordinate in coordinates:
-            x, y, _ = coordinate
-            wireframeScale.append(Point(x, y))
-        self.points = wireframeScale
+        transform.scale_shape(self, scaleX, scaleY)
 
     def getCenter(self):
-        cx, cy = self.getCenterObject(self.points)
-        return Point(cx, cy)
-
-    def normalized(self, centerPoint, angle, factor):
-        coordinates = self.normalizedObjects(self.points, centerPoint, angle, factor)
-        wireframeCoordinates = []
-        for coordinate in coordinates:
-            x, y, _ = coordinate
-            wireframeCoordinates.append(Point(x, y))
-        self.points = wireframeCoordinates
-
-    def coordinatesToPoint(self, points):
-        newPoints = []
-        for point in points:
-            x, y = point
-            newPoints.append(Point(x, y))
-
-        return newPoints
+        x_points = [point[0] for point in self.points]
+        y_points = [point[1] for point in self.points]
+        return [numpy.average(x_points), numpy.average(y_points)]

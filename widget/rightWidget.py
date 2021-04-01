@@ -1,17 +1,17 @@
-from PyQt5.QtCore import QRectF
+from PyQt5.QtCore import QRectF, QPoint
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QPainter, QPalette, QColor
 from PyQt5 import QtCore
 from models.viewport import Viewport
 from models.window import Window
-from models.point import Point
+from operations.clipping import Clipping
 
-(xmin, ymin), (xmax, ymax) = Window.expanded_boundaries()
+[xmin, ymin], [xmax, ymax] = Window.expanded_boundaries()
 xini = ((0 - xmin) / (xmax - xmin)) * (Viewport.xmax - Viewport.xmin)
 yini = (1 - ((0 - ymin) / (ymax - ymin))) * (Viewport.ymax - Viewport.ymin)
 xfin = ((800 - xmin) / (xmax - xmin)) * (Viewport.xmax - Viewport.xmin)
 yfin = (1 - ((450 - ymin) / (ymax - ymin))) * (Viewport.ymax - Viewport.ymin)
-rect = QRectF(Point(xini, yini), Point(xfin, yfin))
+rect = QRectF(QPoint(xini, yini), QPoint(xfin, yfin))
 
 
 class RightWidget(QWidget):
@@ -32,6 +32,7 @@ class RightWidget(QWidget):
         painter = QPainter(self)
         painter.drawRoundedRect(rect, 1, 1)
         Window.normalizedObjects()
+        Clipping().clip(Window.listObjects)
         Viewport.transformViewport()
         for object in Viewport.listObjects:
             object.draw(painter)

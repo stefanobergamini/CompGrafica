@@ -1,9 +1,6 @@
-import sys
-from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 from PyQt5.QtGui import QColor
 from models.world import World
-from models.point import Point
 from models.object import Object
 
 
@@ -47,9 +44,8 @@ class CoordinatesWidgetPonto(QWidget):
         else:
             r, g, b = self.colorPoint.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
-        point = Point(x, y)
-        newObject = Object([point], 'Point', color, False)
-        World.addObject(newObject)
+        point = [x, y]
+        World.addObject(Object([point], 'Point', color, False))
         self.close()
         self.clearLabels()
 

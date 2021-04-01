@@ -168,15 +168,14 @@ class LeftWidget(QWidget):
             faces = []
             for number, line in enumerate(file_lines):
                 if line[0] == "v":
-                    vertices[number + 1] = (float(line[1]), float(line[2]))
+                    vertices[number + 1] = [float(line[1]), float(line[2])]
                 if line[0] == "f":
                     face = []
                     for index in line[1:]:
                         face.append(vertices[int(index)])
                     faces.append(face)
             for face in faces:
-                points = World.faceToPoints(face)
-                World.addObject(Object(points, nameObject))
+                World.addObject(Object(face, nameObject))
 
     def exportObject(self):
         if World.selectedObject is not None:

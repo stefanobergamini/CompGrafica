@@ -1,11 +1,7 @@
-import sys
-from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel, QCheckBox
 from PyQt5.QtGui import QColor
 from models.world import World
-from models.point import Point
 from models.object import Object
-from models.curve import Curve
 
 
 class CoordinatesWidgetPoligono(QWidget):
@@ -45,14 +41,14 @@ class CoordinatesWidgetPoligono(QWidget):
         for stringPonto in coordenadasXY:
             if(stringPonto != ''):
                 x, y = stringPonto.split(',')
-                newpontos.append(Point(int(x), int(y)))
+                newpontos.append([float(x), float(y)])
         if (self.colorPoligono.displayText() == ""):
             r, g, b = 0, 0, 0
             color = QColor(int(r), int(g), int(b))
         else:
             r, g, b = self.colorPoligono.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
-        if self.b1.isChecked() == True:
+        if self.b1.isChecked():
             filled = True
         else:
             filled = False
