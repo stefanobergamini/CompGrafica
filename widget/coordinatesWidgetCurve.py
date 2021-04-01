@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 from PyQt5.QtGui import QColor
 from models.world import World
 from models.curve import Curve
-from models.object import Object
+from models.object2D import Object2D
 
 
 class CoordinatesWidgetCurve(QWidget):
@@ -46,7 +46,7 @@ class CoordinatesWidgetCurve(QWidget):
             r, g, b = self.colorCurve.displayText().strip().split(',')
             color = QColor(int(r), int(g), int(b))
         curve = Curve(newpontos)
-        World.addObject(Object(curve.points, 'Curve Bezier', color))
+        World.addObject(Object2D(curve.points, 'Curve Bezier', color))
         self.close()
         self.clearLabels()
 

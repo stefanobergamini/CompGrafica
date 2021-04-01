@@ -1,4 +1,3 @@
-import copy
 from models.window import Window
 
 

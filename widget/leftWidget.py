@@ -1,4 +1,3 @@
-import os
 from PyQt5.QtWidgets import QPushButton, QWidget, QCheckBox, QButtonGroup, QLabel, QLineEdit, QFileDialog
 from widget.coordinatesWidgetPonto import CoordinatesWidgetPonto
 from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
@@ -8,7 +7,7 @@ from widget.coordinatesWidgetSpline import CoordinatesWidgetSpline
 
 from models.window import Window
 from models.world import World
-from models.object import Object
+from models.object2D import Object2D
 
 
 class LeftWidget(QWidget):
@@ -175,7 +174,7 @@ class LeftWidget(QWidget):
                         face.append(vertices[int(index)])
                     faces.append(face)
             for face in faces:
-                World.addObject(Object(face, nameObject))
+                World.addObject(Object2D(face, nameObject))
 
     def exportObject(self):
         if World.selectedObject is not None:

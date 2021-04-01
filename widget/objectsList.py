@@ -1,5 +1,3 @@
-import sys
-
 from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QLabel
 from PyQt5 import QtCore
 from widget.transformationWidget import TransformationWidget

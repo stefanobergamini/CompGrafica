@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt
 from operations import transform
 
 
-class Object():
+class Object3D():
     def __init__(self, points, type, color=QColor(0, 0, 0), filled=False):
         self.points = points
         self.color = color

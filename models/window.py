@@ -1,6 +1,6 @@
 import numpy
 from models.world import World
-from models.object import Object
+from models.object2D import Object2D
 from operations import transform
 
 
@@ -26,7 +26,7 @@ class Window():
     def copyListObjects(listObjects):
         newListObject = []
         for object in listObjects:
-            newObject = Object(object.points, object.type, object.color, object.filled)
+            newObject = Object2D(object.points, object.type, object.color, object.filled)
             newObject.clip = object.clip
             newListObject.append(newObject)
         return newListObject

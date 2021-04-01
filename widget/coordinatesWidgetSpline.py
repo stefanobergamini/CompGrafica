@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QVBoxLayout, QLabel
 from PyQt5.QtGui import QColor
 from models.world import World
 from models.spline import Spline
-from models.object import Object
+from models.object2D import Object2D
 
 
 class CoordinatesWidgetSpline(QWidget):
@@ -47,7 +47,7 @@ class CoordinatesWidgetSpline(QWidget):
             color = QColor(int(r), int(g), int(b))
 
         spline = Spline(newpontos)
-        World.addObject(Object(spline.points, 'Curve Spline', color))
+        World.addObject(Object2D(spline.points, 'Curve Spline', color))
         self.close()
         self.clearLabels()
 
