@@ -12,7 +12,6 @@ class Viewport():
     def transformViewport():
         Viewport.listObjects = Window.copyListObjects(Window.listObjects)
         [xmin, ymin], [xmax, ymax] = Window.expanded_boundaries()
-        [xmin, ymin], [xmax, ymax] = Window.expanded_boundaries()
         for object in Viewport.listObjects:
             listPoints = []
             for point in object.points:
