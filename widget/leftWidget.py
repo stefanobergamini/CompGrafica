@@ -91,11 +91,11 @@ class LeftWidget(QWidget):
 
         self.buttonSpline = QPushButton("Spline", self)
         self.buttonSpline.clicked.connect(self.show_new_window_spline)
-        self.buttonSpline.setGeometry(0, 250, 57, 25)
+        self.buttonSpline.setGeometry(0, 250, 58, 25)
 
         self.buttonCurve = QPushButton("Curve", self)
         self.buttonCurve.clicked.connect(self.show_new_window_curve)
-        self.buttonCurve.setGeometry(57, 250, 57, 25)
+        self.buttonCurve.setGeometry(57, 250, 59, 25)
 
         self.buttonObj3D = QPushButton("Obj 3D", self)
         self.buttonObj3D.clicked.connect(self.show_new_window_obj3d)
@@ -169,16 +169,16 @@ class LeftWidget(QWidget):
         Window.move([15, 0])
 
     def moveLookUp(self):
-        Window.move([0, 15])
+        Window.move([0, 15]) #alterar para ser o look
 
     def moveLookDown(self):
-        Window.move([0, -15])
+        Window.move([0, -15])#alterar para ser o look
 
     def moveLookLeft(self):
-        Window.move([-15, 0])
+        Window.move([-15, 0])#alterar para ser o look
 
     def moveLookRight(self):
-        Window.move([15, 0])
+        Window.move([15, 0])#alterar para ser o look
 
     def zoomIn(self):
         Window.zoom(0.9)
