@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QWidget, QVBoxLayout, QLabel
 from PyQt5 import QtCore
 from widget.transformationWidget import TransformationWidget
+from widget.transformationWidget3D import TransformationWidget3D
 from models.world import World
 
 
@@ -12,6 +13,7 @@ class ObjectsList(QWidget):
         self.listWidget = QListWidget()
         self.objectListRendered = []
         self.transformationWidget = None
+        self.transformationWidget3D = None
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.renderObjectList)
@@ -36,6 +38,13 @@ class ObjectsList(QWidget):
 
     def launchTransformationWidget(self, item):
         World.selectObject(item.text())
-        if (self.transformationWidget is None):
-            self.transformationWidget = TransformationWidget()
-        self.transformationWidget.show()
+        tipo = World.selectedObject.getType()
+        print(tipo)
+        if tipo == "object3D":
+            if (self.transformationWidget3D is None):
+                self.transformationWidget3D = TransformationWidget3D()
+            self.transformationWidget3D.show()
+        else:
+            if (self.transformationWidget is None):
+                self.transformationWidget = TransformationWidget()
+            self.transformationWidget.show()

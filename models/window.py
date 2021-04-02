@@ -80,6 +80,7 @@ class Window():
             newPoints.append((x, y))
         Window.points = newPoints
 
+
     @staticmethod
     def zoom(factor):
         transform.scale_shape(Window, factor, factor)

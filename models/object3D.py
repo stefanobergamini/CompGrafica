@@ -17,6 +17,9 @@ class Object3D():
     def setType(self, type):
         self.type = type
 
+    def getType(self):
+        return self.type
+
     def setPoints(self, points):
         self.points = points
 

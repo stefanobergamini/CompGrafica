@@ -4,6 +4,7 @@ from widget.coordinatesWidgetLinha import CoordinatesWidgetLinha
 from widget.coordinatesWidgetPoligono import CoordinatesWidgetPoligono
 from widget.coordinatesWidgetCurve import CoordinatesWidgetCurve
 from widget.coordinatesWidgetSpline import CoordinatesWidgetSpline
+from widget.coordinatesWidgetObj3D import CoordinatesWidgetObj3D
 
 from models.window import Window
 from models.world import World
@@ -22,6 +23,7 @@ class LeftWidget(QWidget):
         self.coordinatesWidgetPoligono = None  # No external window yet.
         self.coordinatesWidgetCurve = None  # No external window yet.
         self.coordinatesWidgetSpline = None  # No external window yet.
+        self.coordinatesWidgetObj3D = None  # No external window yet.
 
         self.buttonUp = QPushButton("Up", self)
         self.buttonUp.clicked.connect(self.moveUp)
@@ -39,45 +41,65 @@ class LeftWidget(QWidget):
         self.buttonDown.clicked.connect(self.moveDown)
         self.buttonDown.setGeometry(43, 50, 86, 25)
 
-        self.buttonZoomIn = QPushButton("Zoom In", self)
+        self.buttonZoomIn = QPushButton("-", self)
         self.buttonZoomIn.clicked.connect(self.zoomIn)
-        self.buttonZoomIn.setGeometry(0, 75, 86, 25)
+        self.buttonZoomIn.setGeometry(0, 62, 43, 25)
 
-        self.buttonZoomOut = QPushButton("Zoom Out", self)
+        self.buttonZoomOut = QPushButton("+", self)
         self.buttonZoomOut.clicked.connect(self.zoomOut)
-        self.buttonZoomOut.setGeometry(86, 75, 86, 25)
+        self.buttonZoomOut.setGeometry(129, 62, 43, 25)
+
+        self.buttonUp = QPushButton("Look Up", self)
+        self.buttonUp.clicked.connect(self.moveLookUp)
+        self.buttonUp.setGeometry(43, 75, 86, 25)
+
+        self.buttonLeft = QPushButton("Look Left", self)
+        self.buttonLeft.clicked.connect(self.moveLookLeft)
+        self.buttonLeft.setGeometry(0, 100, 86, 25)
+
+        self.buttonRight = QPushButton("Look Right", self)
+        self.buttonRight.clicked.connect(self.moveLookRight)
+        self.buttonRight.setGeometry(86, 100, 86, 25)
+
+        self.buttonDown = QPushButton("Look Down", self)
+        self.buttonDown.clicked.connect(self.moveLookDown)
+        self.buttonDown.setGeometry(43, 125, 86, 25)
 
         self.rotateWinAngLabel = QLabel("Rotation Window Angle:", self)
-        self.rotateWinAngLabel.setGeometry(0, 100, 120, 25)
+        self.rotateWinAngLabel.setGeometry(0, 150, 120, 25)
         self.rotateWinAng = QLineEdit("10", self)
-        self.rotateWinAng.setGeometry(120, 100, 52, 25)
+        self.rotateWinAng.setGeometry(120, 150, 52, 25)
 
         self.buttonRotateLeft = QPushButton("Rotate Window", self)
         self.buttonRotateLeft.clicked.connect(self.rotateWindow)
-        self.buttonRotateLeft.setGeometry(0, 125, 173, 25)
+        self.buttonRotateLeft.setGeometry(0, 175, 173, 25)
 
         self.insertLabel = QLabel("Insert:", self)
-        self.insertLabel.setGeometry(0, 150, 120, 25)
+        self.insertLabel.setGeometry(0, 200, 120, 25)
 
         self.buttonPoint = QPushButton("Point", self)
         self.buttonPoint.clicked.connect(self.show_new_window_ponto)
-        self.buttonPoint.setGeometry(0, 175, 58, 25)
+        self.buttonPoint.setGeometry(0, 225, 58, 25)
 
         self.buttonLine = QPushButton("Line", self)
         self.buttonLine.clicked.connect(self.show_new_window_linha)
-        self.buttonLine.setGeometry(57, 175, 59, 25)
+        self.buttonLine.setGeometry(57, 225, 59, 25)
 
         self.buttonPolygon = QPushButton("Poligon", self)
         self.buttonPolygon.clicked.connect(self.show_new_window_poligono)
-        self.buttonPolygon.setGeometry(115, 175, 57, 25)
-
-        self.buttonCurve = QPushButton("Curve", self)
-        self.buttonCurve.clicked.connect(self.show_new_window_curve)
-        self.buttonCurve.setGeometry(86, 200, 86, 25)
+        self.buttonPolygon.setGeometry(115, 225, 57, 25)
 
         self.buttonSpline = QPushButton("Spline", self)
         self.buttonSpline.clicked.connect(self.show_new_window_spline)
-        self.buttonSpline.setGeometry(0, 200, 86, 25)
+        self.buttonSpline.setGeometry(0, 250, 57, 25)
+
+        self.buttonCurve = QPushButton("Curve", self)
+        self.buttonCurve.clicked.connect(self.show_new_window_curve)
+        self.buttonCurve.setGeometry(57, 250, 57, 25)
+
+        self.buttonObj3D = QPushButton("Obj 3D", self)
+        self.buttonObj3D.clicked.connect(self.show_new_window_obj3d)
+        self.buttonObj3D.setGeometry(115, 250, 57, 25)
 
         self.checkBox1 = QCheckBox("Cohen-Sutherland", self)
         self.checkBox1.setChecked(True)
@@ -125,6 +147,11 @@ class LeftWidget(QWidget):
             self.coordinatesWidgetSpline = CoordinatesWidgetSpline()
         self.coordinatesWidgetSpline.show()
 
+    def show_new_window_obj3d(self):
+        if self.coordinatesWidgetObj3D is None:
+            self.coordinatesWidgetObj3D = CoordinatesWidgetObj3D()
+        self.coordinatesWidgetObj3D.show()
+
     def rotateWindow(self):
         angleWin = int(self.rotateWinAng.displayText())
         Window.rotateWindow(angleWin)
@@ -139,6 +166,18 @@ class LeftWidget(QWidget):
         Window.move([-15, 0])
 
     def moveRight(self):
+        Window.move([15, 0])
+
+    def moveLookUp(self):
+        Window.move([0, 15])
+
+    def moveLookDown(self):
+        Window.move([0, -15])
+
+    def moveLookLeft(self):
+        Window.move([-15, 0])
+
+    def moveLookRight(self):
         Window.move([15, 0])
 
     def zoomIn(self):
